@@ -4,6 +4,7 @@ import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
 import Backdrop from "@material-ui/core/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssessmentIcon from "@material-ui/icons/Assessment";
+import StorefrontIcon from "@material-ui/icons/Storefront";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
@@ -22,7 +23,7 @@ const UserOptions = ({ user }) => {
   const dispatch = useDispatch();
 
   const options = [
-    { icon: <DashboardIcon />, name: "Dashboard", func: userDashboard },
+    { icon: <DashboardIcon />, name: "Customer Dashboard", func: userDashboard },
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
     {
@@ -40,13 +41,25 @@ const UserOptions = ({ user }) => {
   if (user.role === "admin") {
     options.unshift({
       icon: <AssessmentIcon />,
-      name: "Admin Panel",
+      name: "Admin Dashboard",
       func: adminDashboard,
+    });
+  }
+
+  if (user.role === "seller" || user.role === "admin") {
+    options.unshift({
+      icon: <StorefrontIcon />,
+      name: "Seller Dashboard",
+      func: sellerDashboard,
     });
   }
 
   function userDashboard() {
     history.push("/dashboard");
+  }
+
+  function sellerDashboard() {
+    history.push("/seller/dashboard");
   }
 
   function adminDashboard() {

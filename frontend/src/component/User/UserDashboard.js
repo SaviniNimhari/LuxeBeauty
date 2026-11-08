@@ -12,6 +12,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import LocalMallIcon from "@material-ui/icons/LocalMall";
 import LockIcon from "@material-ui/icons/Lock";
 import AssessmentIcon from "@material-ui/icons/Assessment";
+import StorefrontIcon from "@material-ui/icons/Storefront";
 import LaunchIcon from "@material-ui/icons/Launch";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
@@ -77,10 +78,18 @@ const UserDashboard = ({ history }) => {
               <p>{user.email}</p>
               <span
                 className={`roleBadge ${
-                  user.role === "admin" ? "adminBadge" : "memberBadge"
+                  user.role === "admin"
+                    ? "adminBadge"
+                    : user.role === "seller"
+                    ? "sellerBadge"
+                    : "memberBadge"
                 }`}
               >
-                {user.role === "admin" ? "Store Administrator" : "VIP Beauty Member"}
+                {user.role === "admin"
+                  ? "Store Administrator"
+                  : user.role === "seller"
+                  ? "Verified Merchant / Seller"
+                  : "VIP Beauty Customer"}
               </span>
             </div>
           </div>
@@ -168,6 +177,13 @@ const UserDashboard = ({ history }) => {
                 <Link to="/admin/dashboard" className="quickActionBtn adminActionBtn">
                   <AssessmentIcon />
                   <span>Admin Control Center</span>
+                  <LaunchIcon className="arrowIcon" />
+                </Link>
+              )}
+              {user.role === "seller" && (
+                <Link to="/seller/dashboard" className="quickActionBtn adminActionBtn" style={{ background: "linear-gradient(135deg, #1e1b4b, #4338ca)" }}>
+                  <StorefrontIcon />
+                  <span>Seller Operations Portal</span>
                   <LaunchIcon className="arrowIcon" />
                 </Link>
               )}

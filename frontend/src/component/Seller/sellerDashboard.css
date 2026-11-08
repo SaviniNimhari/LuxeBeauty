@@ -1,0 +1,420 @@
+.sellerDashboard {
+  width: 100vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  position: absolute;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.sellerDashboardContainer {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f8fafc;
+  padding: 2.5rem 3rem 4rem 3rem;
+  box-sizing: border-box;
+}
+
+/* Header Banner */
+.sellerDashHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+  color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(49, 46, 129, 0.3);
+  margin-bottom: 2rem;
+}
+
+.sellerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.sellerBadge svg {
+  font-size: 1.1rem;
+}
+
+.sellerDashTitle h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.2rem 0;
+  font-family: "Playfair Display", serif, sans-serif;
+}
+
+.sellerSubtitle {
+  color: #c7d2fe;
+  font-size: 0.95rem;
+  margin: 0.4rem 0 0 0;
+  max-width: 600px;
+}
+
+.sellerHeaderActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sellerPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #312e81;
+  padding: 0.8rem 1.4rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+}
+
+.sellerPrimaryBtn:hover {
+  background: #e0e7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.sellerSecondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.8rem 1.3rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.sellerSecondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* KPI Grid */
+.sellerKpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sellerKpiCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.6rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+.sellerKpiCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.kpiIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpiIcon svg {
+  font-size: 1.7rem;
+}
+
+.kpiRevenue .kpiIcon {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.kpiProducts .kpiIcon {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.kpiOrders .kpiIcon {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.kpiStock .kpiIcon {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.kpiInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpiLabel {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpiValue {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0.2rem 0;
+}
+
+.kpiHint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Charts */
+.sellerChartsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sellerChartBox {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.sellerChartBox h3 {
+  margin: 0 0 1.2rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.chartWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.doughnutWrapper {
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Tables Snapshot */
+.sellerTablesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.sellerCardTable {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.sellerTableHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sellerTableHead h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.sellerTableHead a {
+  color: #4f46e5;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sellerTableHead a:hover {
+  text-decoration: underline;
+}
+
+.sellerProductRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.sellerProductRow:last-child {
+  border-bottom: none;
+}
+
+.sellerProdThumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+}
+
+.sellerProdDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.sellerProdDetails h4 {
+  margin: 0 0 0.2rem 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sellerProdDetails p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.sellerProdCat {
+  color: #4f46e5;
+  font-weight: 500;
+}
+
+.sellerProdStock {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.stockBadge {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.inStockBadge {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.outStockBadge {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.sellerRowEditLink {
+  color: #4f46e5;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sellerRowEditLink:hover {
+  text-decoration: underline;
+}
+
+/* Orders rows */
+.sellerOrderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.sellerOrderRow:last-child {
+  border-bottom: none;
+}
+
+.sellerOrderMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.sellerOrderId {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #0f172a;
+}
+
+.sellerOrderDate {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.sellerOrderPrice {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.9rem;
+}
+
+.sellerOrderStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.sellerEmptyMsg {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .sellerChartsGrid,
+  .sellerTablesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .sellerDashboard {
+    grid-template-columns: 1fr;
+  }
+  .sellerDashboardContainer {
+    padding: 1.5rem;
+    border-left: none;
+  }
+  .sellerDashHeader {
+    padding: 1.5rem;
+  }
+}

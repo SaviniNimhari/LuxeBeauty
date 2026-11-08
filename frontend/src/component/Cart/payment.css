@@ -1,90 +1,644 @@
-.paymentContainer {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+.paymentPageContainer {
+  max-width: 1200px;
+  margin: 1.5rem auto 5rem auto;
+  padding: 0 1.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Navigation & Security Bar */
+.paymentTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backToConfirmBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b21a8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: #f3e8ff;
+  transition: all 0.2s ease;
+}
+
+.backToConfirmBtn:hover {
+  background: #e9d5ff;
+  color: #581c87;
+  transform: translateX(-3px);
+}
+
+.paymentSecurityNotice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.paymentSecurityNotice svg {
+  font-size: 1.1rem;
+}
+
+/* Two Column Layout */
+.paymentContentGrid {
   display: grid;
-  place-items: center;
-  background-color: rgb(255, 255, 255);
-  height: 65vh;
-  margin: 2vmax;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.2rem;
+  align-items: start;
 }
 
-.paymentForm {
-  width: 22%;
-  height: 100%;
+/* ================= RECEIPT CARD STYLES ================= */
+.paymentReceiptCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  position: relative;
 }
 
-.paymentForm > p {
-  font: 400 2vmax "Roboto";
-  color: rgba(0, 0, 0, 0.753);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
-  padding: 1vmax 0;
-  text-align: center;
-  width: 50%;
-  margin: auto;
+.paymentReceiptCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #9333ea, #c084fc, #ec4899);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-.paymentForm > div {
+.receiptHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.receiptBrand h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #1e1b4b;
+  margin: 0.2rem 0;
+  letter-spacing: 0.05em;
+}
+
+.receiptBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #7e22ce;
+  background: #f3e8ff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  letter-spacing: 0.06em;
+}
+
+.receiptBadge svg {
+  font-size: 0.95rem;
+}
+
+.receiptTagline {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.receiptMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.metaRow {
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.metaLabel {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.metaValue {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.receiptNumber {
+  font-family: monospace;
+  background: #f1f5f9;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.receiptStatusPending {
+  background: #fef3c7;
+  color: #b45309;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.receiptDivider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 1.5rem 0;
+}
+
+.receiptDivider.dashed {
+  background: none;
+  border-top: 1px dashed #cbd5e1;
+}
+
+/* Addresses */
+.receiptAddresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.receiptAddressCol h4 {
   display: flex;
   align-items: center;
-  margin: 2vmax 0;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+}
+
+.receiptAddressCol h4 svg {
+  font-size: 1rem;
+  color: #9333ea;
+}
+
+.receiptAddressCol p {
+  margin: 0.15rem 0;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.receiptAddressCol .addrName {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Items List */
+.receiptItemsSection h4 {
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.receiptItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.receiptItemRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.receiptItemRow:last-child {
+  border-bottom: none;
+}
+
+.receiptItemImg {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+}
+
+.receiptItemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.receiptItemName {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.receiptItemName:hover {
+  color: #9333ea;
+}
+
+.receiptItemQty {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+.receiptItemTotal {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.emptyReceiptItems {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* Totals */
+.receiptTotalsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.totalLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.totalLine.grandTotal {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 0.2rem;
+}
+
+.grandTotalAmount {
+  color: #9333ea;
+  font-size: 1.35rem;
+}
+
+/* Footer Actions */
+.receiptFooterActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.printReceiptBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.printReceiptBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.receiptNote {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* ================= RIGHT COLUMN: PAYMENT GATEWAY CARD ================= */
+.paymentGatewayCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.gatewayHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.gatewayIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #ede9fe;
+  color: #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gatewayIconWrap svg {
+  font-size: 1.6rem;
+}
+
+.gatewayHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.gatewayHeader p {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Cards Pill Banner */
+.acceptedCardsBanner {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cardPill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.cardPill.visa {
+  background: #1e3a8a;
+  color: white;
+}
+
+.cardPill.mastercard {
+  background: #ea580c;
+  color: white;
+}
+
+.cardPill.amex {
+  background: #0284c7;
+  color: white;
+}
+
+.cardPill.rupay {
+  background: #059669;
+  color: white;
+}
+
+/* Inputs & Form */
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inputGroup label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.inputWithIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWithIcon > svg {
+  position: absolute;
+  left: 12px;
+  font-size: 1.25rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.styledInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  color: #0f172a;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.styledInput:focus {
+  border-color: #9333ea;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
 }
 
 .paymentInput {
-  padding: 1vmax 4vmax;
-  padding-right: 1vmax;
   width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.267);
+  background: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.paymentInput:focus {
+  border-color: #9333ea;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
+}
+
+.formRowGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Demo Notice Box */
+.demoCardNotice {
+  background: #fdf4ff;
+  border: 1px dashed #d8b4fe;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  color: #7e22ce;
+}
+
+.demoNoticeTitle {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.demoNoticeDetails {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.demoNoticeDetails code {
+  background: white;
+  padding: 0.1rem 0.35rem;
   border-radius: 4px;
-  outline: none;
+  font-weight: 600;
+  border: 1px solid #e9d5ff;
 }
 
-.paymentForm > div > svg {
-  position: absolute;
-  transform: translateX(1vmax);
-  font-size: 1.6vmax;
-  color: rgba(0, 0, 0, 0.623);
-}
-
+/* Pay Button */
 .paymentFormBtn {
-  border: none;
-  background-color: tomato;
-  color: white;
-  font: 300 0.9vmax "Roboto";
   width: 100%;
-  padding: 0.8vmax;
+  background: linear-gradient(135deg, #7e22ce 0%, #9333ea 50%, #a855f7 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.5s;
-  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(147, 51, 234, 0.3);
+  font-family: inherit;
+  margin-top: 0.5rem;
 }
 
-.paymentFormBtn:hover {
-  background-color: rgb(179, 66, 46);
+.paymentFormBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(147, 51, 234, 0.4);
+}
+
+.paymentFormBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.guaranteeBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.guaranteeBanner svg {
+  font-size: 1.4rem;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.guaranteeBanner p {
+  margin: 0;
+  font-size: 0.76rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .paymentContentGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .paymentForm {
-    width: 90%;
+  .paymentReceiptCard,
+  .paymentGatewayCard {
+    padding: 1.5rem;
   }
-
-  .paymentForm > p {
-    font: 400 8vw "Roboto";
-    padding: 4vw 0;
-    width: 60%;
+  .receiptAddresses {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-
-  .paymentForm > div {
-    margin: 10vw 0;
+  .receiptMeta {
+    text-align: left;
+    margin-top: 0.5rem;
   }
-
-  .paymentInput {
-    padding: 4vw 10vw;
+  .metaRow {
+    justify-content: flex-start;
   }
-
-  .paymentForm > div > svg {
-    font-size: 6vw;
+  .formRowGrid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .paymentFormBtn {
-    font: 300 4vw "Roboto";
-    padding: 4vw;
+/* Print Friendly Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printableReceipt,
+  #printableReceipt * {
+    visibility: visible;
+  }
+  #printableReceipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  .no-print {
+    display: none !important;
   }
 }

@@ -15,7 +15,7 @@ const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { error, loading, isAuthenticated } = useSelector(
+  const { error, loading, isAuthenticated, user: loggedInUser } = useSelector(
     (state) => state.user
   );
 
@@ -75,6 +75,12 @@ const LoginSignUp = ({ history, location }) => {
   const rawRedirect = location.search ? location.search.split("=")[1] : "/dashboard";
   const redirect = rawRedirect.startsWith("/") ? rawRedirect : `/${rawRedirect}`;
 
+  const handleQuickLogin = (email, password) => {
+    setLoginEmail(email);
+    setLoginPassword(password);
+    dispatch(login(email, password));
+  };
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -82,9 +88,20 @@ const LoginSignUp = ({ history, location }) => {
     }
 
     if (isAuthenticated) {
-      history.push(redirect);
+      // If default redirect was dashboard, send to role-specific dashboard
+      if (rawRedirect === "/dashboard" || !location.search) {
+        if (loggedInUser && loggedInUser.role === "admin") {
+          history.push("/admin/dashboard");
+        } else if (loggedInUser && loggedInUser.role === "seller") {
+          history.push("/seller/dashboard");
+        } else {
+          history.push("/dashboard");
+        }
+      } else {
+        history.push(redirect);
+      }
     }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+  }, [dispatch, error, alert, history, isAuthenticated, redirect, loggedInUser, rawRedirect, location.search]);
 
   const switchTabs = (e, tab) => {
     setActiveTab(tab);
@@ -236,6 +253,44 @@ const LoginSignUp = ({ history, location }) => {
                   <input type="submit" value="Create Account" className="signUpBtn" />
                 </form>
               </div>
+
+              {activeTab === "login" && (
+                <div className="demoCredentialsBox">
+                  <div className="demoHeader">
+                    <span>⚡ Quick Demo Credentials (Click to Login)</span>
+                  </div>
+                  <div className="demoButtonsGrid">
+                    <button
+                      type="button"
+                      className="demoBtn demoCustomer"
+                      onClick={() => handleQuickLogin("customer@luxebeauty.com", "Password123!")}
+                      title="Login as Customer"
+                    >
+                      <span className="demoBadge customerBadge">Customer</span>
+                      <span className="demoEmail">customer@luxebeauty.com</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="demoBtn demoSeller"
+                      onClick={() => handleQuickLogin("seller@luxebeauty.com", "Password123!")}
+                      title="Login as Seller"
+                    >
+                      <span className="demoBadge sellerBadge">Seller</span>
+                      <span className="demoEmail">seller@luxebeauty.com</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="demoBtn demoAdmin"
+                      onClick={() => handleQuickLogin("admin@luxebeauty.com", "Password123!")}
+                      title="Login as Admin"
+                    >
+                      <span className="demoBadge adminBadge">Admin</span>
+                      <span className="demoEmail">admin@luxebeauty.com</span>
+                    </button>
+                  </div>
+                  <p className="demoHint">Password: <code>Password123!</code></p>
+                </div>
+              )}
             </div>
           </div>
         </Fragment>

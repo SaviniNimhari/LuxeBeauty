@@ -33,6 +33,7 @@ import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.js";
+import SellerDashboard from "./component/Seller/SellerDashboard";
 import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct";
 import UpdateProduct from "./component/Admin/UpdateProduct";
@@ -81,11 +82,9 @@ function App() {
         <GlobalLoginButton />
       )}
 
-      {stripeApiKey && (
-        <Elements stripe={loadStripe(stripeApiKey)}>
-          <ProtectedRoute exact path="/process/payment" component={Payment} />
-        </Elements>
-      )}
+      <Elements stripe={loadStripe(stripeApiKey || "pk_test_TYooMQauvdEDq54NiTphI7jx")}>
+        <ProtectedRoute exact path="/process/payment" component={Payment} />
+      </Elements>
 
       <Switch>
         <Route exact path="/" component={Home} />
@@ -129,6 +128,36 @@ function App() {
 
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
 
+        {/* Customer Dashboard */}
+        <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
+
+        {/* Seller Dashboard & Seller Features */}
+        <ProtectedRoute
+          exact
+          path="/seller/dashboard"
+          allowedRoles={["seller", "admin"]}
+          component={SellerDashboard}
+        />
+        <ProtectedRoute
+          exact
+          path="/seller/products"
+          allowedRoles={["seller", "admin"]}
+          component={ProductList}
+        />
+        <ProtectedRoute
+          exact
+          path="/seller/product"
+          allowedRoles={["seller", "admin"]}
+          component={NewProduct}
+        />
+        <ProtectedRoute
+          exact
+          path="/seller/orders"
+          allowedRoles={["seller", "admin"]}
+          component={OrderList}
+        />
+
+        {/* Admin Dashboard */}
         <ProtectedRoute
           isAdmin={true}
           exact
@@ -138,32 +167,32 @@ function App() {
         <ProtectedRoute
           exact
           path="/admin/products"
-          isAdmin={true}
+          allowedRoles={["admin", "seller"]}
           component={ProductList}
         />
         <ProtectedRoute
           exact
           path="/admin/product"
-          isAdmin={true}
+          allowedRoles={["admin", "seller"]}
           component={NewProduct}
         />
 
         <ProtectedRoute
           exact
           path="/admin/product/:id"
-          isAdmin={true}
+          allowedRoles={["admin", "seller"]}
           component={UpdateProduct}
         />
         <ProtectedRoute
           exact
           path="/admin/orders"
-          isAdmin={true}
+          allowedRoles={["admin", "seller"]}
           component={OrderList}
         />
         <ProtectedRoute
           exact
           path="/admin/order/:id"
-          isAdmin={true}
+          allowedRoles={["admin", "seller"]}
           component={ProcessOrder}
         />
         <ProtectedRoute

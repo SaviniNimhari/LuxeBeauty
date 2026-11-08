@@ -11,51 +11,85 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import StorefrontIcon from "@material-ui/icons/Storefront";
+import PersonIcon from "@material-ui/icons/Person";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const { user } = useSelector((state) => state.user);
+  const isSeller = user && user.role === "seller";
+  const isAdmin = user && user.role === "admin";
+
   return (
     <div className="sidebar">
       <Link to="/">
         <img src={logo} alt="LuxeBeauty" />
       </Link>
-      <Link to="/admin/dashboard">
+
+      {isAdmin && (
+        <Link to="/admin/dashboard">
+          <p>
+            <DashboardIcon /> Admin Dashboard
+          </p>
+        </Link>
+      )}
+
+      {(isSeller || isAdmin) && (
+        <Link to="/seller/dashboard">
+          <p>
+            <StorefrontIcon /> Seller Dashboard
+          </p>
+        </Link>
+      )}
+
+      <Link to="/dashboard">
         <p>
-          <DashboardIcon /> Dashboard
+          <PersonIcon /> Customer Portal
         </p>
       </Link>
-      <Link>
+
+      <div className="sidebarDivider" style={{ margin: "10px 0", borderTop: "1px solid #e2e8f0" }} />
+
+      <div style={{ padding: "0 1rem" }}>
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ImportExportIcon />}
         >
           <TreeItem nodeId="1" label="Products">
             <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
+              <TreeItem nodeId="2" label="All Products" icon={<PostAddIcon />} />
             </Link>
 
             <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
+              <TreeItem nodeId="3" label="Create Product" icon={<AddIcon />} />
             </Link>
           </TreeItem>
         </TreeView>
-      </Link>
+      </div>
+
       <Link to="/admin/orders">
         <p>
           <ListAltIcon />
           Orders
         </p>
       </Link>
-      <Link to="/admin/users">
-        <p>
-          <PeopleIcon /> Users
-        </p>
-      </Link>
-      <Link to="/admin/reviews">
-        <p>
-          <RateReviewIcon />
-          Reviews
-        </p>
-      </Link>
+
+      {isAdmin && (
+        <Link to="/admin/users">
+          <p>
+            <PeopleIcon /> Users
+          </p>
+        </Link>
+      )}
+
+      {isAdmin && (
+        <Link to="/admin/reviews">
+          <p>
+            <RateReviewIcon />
+            Reviews
+          </p>
+        </Link>
+      )}
     </div>
   );
 };
