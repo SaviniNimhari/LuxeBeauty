@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ===== HERO ===== */
+.contactPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+}
+
+.contactHero {
+  background: linear-gradient(135deg, #2e1065, #7c3aed, #c084fc);
+  padding: 8vmax 2vmax 6vmax;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(196,132,252,0.3) 0%, transparent 70%);
+}
+
+.contactHeroContent {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.contactBadge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8vmax;
+  letter-spacing: 0.4em;
+  color: #e9d5ff;
+  text-transform: uppercase;
+}
+
+.contactHero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.5vmax;
+  color: #ffffff;
+  margin: 0.5vmax 0;
+}
+
+.contactHero p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1vmax;
+  color: rgba(233,213,255,0.85);
+  font-weight: 300;
+}
+
+/* ===== BODY ===== */
+.contactBody {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4vmax 2vmax 6vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vmax;
+}
+
+/* ===== EMAIL CARD ===== */
+.contactCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3vmax 4vmax;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(196,132,252,0.25);
+  width: 100%;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.contactIconBox {
+  width: 5vmax;
+  height: 5vmax;
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1vmax;
+}
+
+.contactMainIcon {
+  color: white;
+  font-size: 2vmax;
+}
+
+.contactCard h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2vmax;
+  color: #4c1d95;
+  margin: 0 0 0.5vmax;
+}
+
+.contactCard p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95vmax;
+  color: #9333ea;
+  margin-bottom: 1.5vmax;
+}
+
+.contactEmailBtn {
+  display: inline-block;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white;
+  padding: 1vmax 2.5vmax;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1vmax;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124,58,237,0.3);
+}
+
+.contactEmailBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(124,58,237,0.5);
+}
+
+/* ===== SOCIAL SECTION ===== */
+.contactSocialSection {
+  width: 100%;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.contactSocialSection h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2vmax;
+  color: #4c1d95;
+  text-align: center;
+  margin-bottom: 2vmax;
+}
+
+.contactSocialGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2vmax;
+}
+
+/* ===== SOCIAL CARDS ===== */
+.socialCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4vmax;
+  padding: 1.5vmax 2vmax;
+  border-radius: 16px;
+  text-decoration: none;
+  min-width: 11vmax;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(196,132,252,0.2);
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.socialCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.socialIcon {
+  font-size: 2.2vmax;
+}
+
+.socialLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85vmax;
+  font-weight: 600;
+  color: #3b0764;
+}
+
+.socialHandle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75vmax;
+  font-weight: 300;
+  color: #9333ea;
+}
+
+.linkedin .socialIcon { color: #0077b5; }
+.facebook .socialIcon { color: #1877f2; }
+.instagram .socialIcon { color: #e1306c; }
+.tiktok   .socialIcon { color: #010101; }
+.github   .socialIcon { color: #333; }
+
+@media screen and (max-width: 600px) {
+  .contactHero h1    { font-size: 7vmax; }
+  .contactHero p     { font-size: 2vmax; }
+  .contactBadge      { font-size: 1.5vmax; }
+  .contactCard h2    { font-size: 4vmax; }
+  .contactCard p     { font-size: 1.8vmax; }
+  .contactEmailBtn   { font-size: 1.8vmax; padding: 2vmax 4vmax; }
+  .socialCard        { min-width: 35vw; padding: 3vmax; }
+  .socialIcon        { font-size: 5vmax; }
+  .socialLabel       { font-size: 2vmax; }
+  .socialHandle      { font-size: 1.5vmax; }
+}

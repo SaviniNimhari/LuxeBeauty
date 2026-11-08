@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap');
+
+footer {
+  margin-top: 6vmax;
+  padding: 3vmax 2vmax;
+  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 60%, #5b21b6 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.leftFooter {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leftFooter > h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9vmax;
+  letter-spacing: 0.15em;
+  color: #e9d5ff;
+  text-transform: uppercase;
+}
+
+.leftFooter > p {
+  text-align: center;
+  font-size: 0.9vmax;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: rgba(233, 213, 255, 0.8);
+  line-height: 1.5;
+}
+
+.leftFooter > img {
+  width: 9vmax;
+  margin: 0.6vmax;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+}
+
+.leftFooter > img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.midFooter {
+  width: 60%;
+  text-align: center;
+}
+
+.midFooter > h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4vmax;
+  font-weight: 600;
+  color: #e9d5ff;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5vmax;
+}
+
+.midFooter > p {
+  max-width: 55%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  margin: 0.5vmax auto;
+  color: rgba(233, 213, 255, 0.75);
+  font-size: 0.9vmax;
+  line-height: 1.6;
+}
+
+.footerQuickLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2vmax;
+  margin: 0.8vmax auto;
+  flex-wrap: wrap;
+}
+
+.footerQuickLinks > a {
+  color: #e9d5ff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85vmax;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 0.3vmax 0.7vmax;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(233, 213, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.footerQuickLinks > a:hover {
+  color: #ffffff;
+  background: rgba(233, 213, 255, 0.25);
+  border-color: rgba(233, 213, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.rightFooter {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rightFooter > h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1vmax;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #e9d5ff;
+  margin-bottom: 0.5vmax;
+}
+
+.rightFooter > a {
+  text-decoration: none;
+  font-size: 1vmax;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: rgba(233, 213, 255, 0.8);
+  transition: all 0.3s ease;
+  margin: 0.4vmax;
+}
+
+.rightFooter > a:hover {
+  color: #f0abfc;
+  letter-spacing: 0.05em;
+}

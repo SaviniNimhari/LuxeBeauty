@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.LoginSignUpContainer {
+  width: 100vw;
+  min-height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 15% 20%, rgba(243, 232, 255, 0.95) 0%, transparent 45%),
+              radial-gradient(circle at 85% 80%, rgba(252, 231, 243, 0.9) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(250, 245, 255, 0.8) 0%, transparent 60%),
+              linear-gradient(135deg, #fbf7ff 0%, #fdf2f8 50%, #f5f3ff 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2vmax;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  z-index: 100;
+}
+
+.loginBackBtn {
+  position: absolute;
+  top: 2.2vmax;
+  left: 2.5vmax;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5vmax;
+  color: #6b21a8;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9vmax;
+  font-weight: 500;
+  padding: 0.6vmax 1.2vmax;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px rgba(107, 33, 168, 0.1);
+  border: 1px solid rgba(233, 213, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.loginBackBtn:hover {
+  color: #9333ea;
+  background: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 8px 20px rgba(107, 33, 168, 0.18);
+}
+
+.loginBackBtn svg {
+  font-size: 1.2vmax;
+}
+
+.LoginSignUpBox {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  width: 440px;
+  max-width: 92vw;
+  min-height: 570px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(107, 33, 168, 0.14),
+              0 6px 18px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(233, 213, 255, 0.85);
+  padding: 2.2vmax 2vmax;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.loginBrandHeader {
+  text-align: center;
+  margin-bottom: 1.2vmax;
+}
+
+.loginBrandLogo {
+  width: 170px;
+  max-width: 65%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.loginBrandLogo:hover {
+  transform: scale(1.03);
+}
+
+.loginBrandSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82vmax;
+  font-weight: 400;
+  color: #7e22ce;
+  letter-spacing: 0.03em;
+  margin-top: 0.4vmax;
+}
+
+.loginToggleWrapper {
+  position: relative;
+  margin-bottom: 1.2vmax;
+  border-bottom: 2px solid #f3e8ff;
+}
+
+.login_signUp_toggle {
+  display: flex;
+  height: 2.8vmax;
+}
+
+.login_signUp_toggle > p {
+  color: rgba(59, 7, 100, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9vmax;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.login_signUp_toggle > p:hover,
+.login_signUp_toggle > p.activeTab {
+  color: #7e22ce;
+}
+
+.switcherTabBtn {
+  background: linear-gradient(90deg, #9333ea, #c084fc);
+  height: 3px;
+  width: 50%;
+  border: none;
+  border-radius: 3px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.35);
+}
+
+.formsWrapper {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.loginForm,
+.signUpForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0.5vmax 1vmax;
+  box-sizing: border-box;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loginForm {
+  transform: translateX(0%);
+}
+
+.signUpForm {
+  transform: translateX(100%);
+}
+
+.shiftToLeft {
+  transform: translateX(-100%) !important;
+}
+
+.shiftToNeutral {
+  transform: translateX(0%) !important;
+}
+
+.shiftToNeutralForm {
+  transform: translateX(0%) !important;
+}
+
+.shiftToRight {
+  transform: translateX(100%) !important;
+}
+
+.loginEmail,
+.loginPassword,
+.signUpName,
+.signUpEmail,
+.signUpPassword {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.loginForm input[type="email"],
+.loginForm input[type="password"],
+.signUpForm input[type="text"],
+.signUpForm input[type="email"],
+.signUpForm input[type="password"] {
+  width: 100%;
+  padding: 0.75vmax 1vmax 0.75vmax 3.2vmax;
+  box-sizing: border-box;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 12px;
+  background: #faf5ff;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.88vmax;
+  color: #3b0764;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.loginForm input:focus,
+.signUpForm input:focus {
+  border-color: #9333ea;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.12);
+}
+
+.loginForm > div > svg,
+.signUpForm > div > svg {
+  position: absolute;
+  left: 1vmax;
+  font-size: 1.4vmax;
+  color: #9333ea;
+  pointer-events: none;
+}
+
+.forgotPasswordLink {
+  color: #9333ea;
+  text-decoration: none;
+  align-self: flex-end;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82vmax;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.forgotPasswordLink:hover {
+  color: #581c87;
+  text-decoration: underline;
+}
+
+.loginBtn,
+.signUpBtn {
+  border: none;
+  background: linear-gradient(135deg, #7e22ce 0%, #9333ea 50%, #a855f7 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9vmax;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 0.85vmax;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 6px 18px rgba(147, 51, 234, 0.35);
+}
+
+.loginBtn:hover,
+.signUpBtn:hover {
+  background: linear-gradient(135deg, #6b21a8 0%, #7e22ce 50%, #9333ea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(147, 51, 234, 0.45);
+}
+
+#registerImage {
+  display: flex;
+  align-items: center;
+  gap: 1vmax;
+  width: 100%;
+}
+
+#registerImage > img {
+  width: 2.8vmax;
+  height: 2.8vmax;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #9333ea;
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.25);
+  background-color: #faf5ff;
+}
+
+#registerImage > input {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 100%;
+}
+
+#registerImage > input::file-selector-button {
+  cursor: pointer;
+  border: 1px solid #d8b4fe;
+  background: #f3e8ff;
+  color: #6b21a8;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.8vmax;
+  padding: 0.5vmax 1vmax;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+#registerImage > input::file-selector-button:hover {
+  background: #e9d5ff;
+  color: #4c1d95;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .LoginSignUpContainer {
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .loginBackBtn {
+    top: 1rem;
+    left: 1rem;
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+
+  .loginBackBtn svg {
+    font-size: 18px;
+  }
+
+  .LoginSignUpBox {
+    width: 100%;
+    padding: 1.5rem 1.2rem;
+    min-height: 520px;
+    border-radius: 20px;
+  }
+
+  .loginBrandLogo {
+    width: 140px;
+  }
+
+  .loginBrandSubtitle {
+    font-size: 13px;
+  }
+
+  .login_signUp_toggle {
+    height: 40px;
+  }
+
+  .login_signUp_toggle > p {
+    font-size: 14px;
+  }
+
+  .formsWrapper {
+    height: 330px;
+  }
+
+  .loginForm input[type="email"],
+  .loginForm input[type="password"],
+  .signUpForm input[type="text"],
+  .signUpForm input[type="email"],
+  .signUpForm input[type="password"] {
+    padding: 12px 14px 12px 42px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .loginForm > div > svg,
+  .signUpForm > div > svg {
+    font-size: 20px;
+    left: 12px;
+  }
+
+  .forgotPasswordLink {
+    font-size: 13px;
+  }
+
+  .loginBtn,
+  .signUpBtn {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  #registerImage > img {
+    width: 42px;
+    height: 42px;
+  }
+
+  #registerImage > input::file-selector-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
