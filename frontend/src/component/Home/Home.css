@@ -165,73 +165,13 @@
 /* ===== CONTAINER ===== */
 .container {
   display: flex;
-  margin: 2vmax auto;
-  width: 85vw;
+  margin: 2.5rem auto 4rem;
+  width: 90vw;
+  max-width: 1320px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 100%;
-  gap: 2vmax;
-}
-
-/* ===== PRODUCT CARD ===== */
-.productCard {
-  width: 15vmax;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: #3b0764;
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(196, 132, 252, 0.2);
-}
-
-.productCard > img {
-  width: 100%;
-  height: 15vmax;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.productCard:hover > img {
-  transform: scale(1.06);
-}
-
-.productCard > div {
-  padding: 0 0.7vmax;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.productCardSpan {
-  margin: 0 0.3vmax;
-  font: 300 0.65vmax 'Inter', sans-serif;
-  color: #9333ea;
-}
-
-.productCard > p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1vmax;
-  font-weight: 600;
-  margin: 0.8vmax 0.7vmax 0.3vmax;
-  color: #3b0764;
-}
-
-.productCard > span {
-  margin: 0.3vmax 0.7vmax 1vmax;
-  color: #9333ea;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 1vmax;
-}
-
-.productCard:hover {
-  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.3);
-  transform: translateY(-0.8vmax);
-  border-color: rgba(167, 105, 230, 0.5);
+  align-items: stretch;
+  gap: 1.5rem;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -240,11 +180,8 @@
   .bannerSub { font-size: 2vmax; max-width: 70vmax; }
   .bannerTag { font-size: 1.8vmax; }
   .bannerBtn { font-size: 2vmax; padding: 2vmax 5vmax; }
-
-  .productCard { width: 40vw; }
-  .productCard > img { height: 40vw; }
-  .productCard > p { font-size: 2.2vmax; }
-  .productCard > span { font-size: 1.8vmax; }
-  .productCard > div { display: block; }
-  .productCardSpan { font-size: 1.5vmax; }
+  .container {
+    width: 95vw;
+    gap: 1rem;
+  }
 }

@@ -1,0 +1,85 @@
+name: LuxeBeauty CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-build:
+    name: Test & Build Application
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: luxebeauty
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+
+      - name: Install Root Dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run Database Seeding
+        env:
+          DB_URI: postgres://postgres:password@localhost:5432/luxebeauty
+          JWT_SECRET: ci_test_jwt_secret_token
+        run: |
+          npm run seed:users
+          npm run seed:coupons
+          npm run seed
+
+      - name: Execute Automated Backend Tests
+        env:
+          DB_URI: postgres://postgres:password@localhost:5432/luxebeauty
+          JWT_SECRET: ci_test_jwt_secret_token
+          PORT: 4000
+        run: npm test
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm ci --legacy-peer-deps
+
+      - name: Compile Frontend Production Build
+        working-directory: ./frontend
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
+          SKIP_PREFLIGHT_CHECK: "true"
+        run: npm run build
+
+  docker-verification:
+    name: Docker Build Validation
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker Production Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          tags: luxebeauty:latest

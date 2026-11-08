@@ -100,9 +100,20 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get All Product (Admin)
+// Get All Product (Admin / Seller)
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
-  const products = await Product.findAll({ order: [["createdAt", "ASC"]] });
+  const whereClause =
+    req.user.role === "seller" ? { user: req.user.id } : {};
+
+  let products = await Product.findAll({
+    where: whereClause,
+    order: [["createdAt", "DESC"]],
+  });
+
+  // Fallback: If seller hasn't created specific products yet, display store catalog
+  if (req.user.role === "seller" && products.length === 0) {
+    products = await Product.findAll({ order: [["createdAt", "DESC"]] });
+  }
 
   res.status(200).json({
     success: true,
@@ -134,6 +145,17 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
   if (!product) {
     return next(new ErrorHander("Product not found", 404));
+  }
+
+  // Strict Seller Scoping: Sellers can only edit products they own
+  if (
+    req.user.role === "seller" &&
+    product.user &&
+    String(product.user) !== String(req.user.id)
+  ) {
+    return next(
+      new ErrorHander("Access denied. You can only modify your own products.", 403)
+    );
   }
 
   const updates = pickFields(req.body, PRODUCT_FIELDS);
@@ -184,6 +206,17 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
   if (!product) {
     return next(new ErrorHander("Product not found", 404));
+  }
+
+  // Strict Seller Scoping: Sellers can only delete products they own
+  if (
+    req.user.role === "seller" &&
+    product.user &&
+    String(product.user) !== String(req.user.id)
+  ) {
+    return next(
+      new ErrorHander("Access denied. You can only delete your own products.", 403)
+    );
   }
 
   // Deleting Images From Cloudinary

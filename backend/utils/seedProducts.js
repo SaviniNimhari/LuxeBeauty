@@ -4,11 +4,17 @@ const { Product, Review } = require("../models");
 const products = [
   {
     name: "Velvet Matte Rouge Lipstick",
+    sku: "LX-LIP-001",
     description:
       "A rich, velvety matte lipstick infused with jojoba oil and vitamin E for long-lasting, hydrating color that glides on smoothly without drying.",
     price: 1499,
     category: "Lipstick",
-    Stock: 25,
+    Stock: 33,
+    variants: [
+      { id: "v1", sku: "LX-LIP-001-RR", shade: "Ruby Rouge", hexColor: "#9f1239", price: 1499, stock: 15 },
+      { id: "v2", sku: "LX-LIP-001-NP", shade: "Nude Petal", hexColor: "#be7c68", price: 1499, stock: 10 },
+      { id: "v3", sku: "LX-LIP-001-VP", shade: "Velvet Plum", hexColor: "#581c87", price: 1599, stock: 8 },
+    ],
     images: [
       {
         public_id: "luxe_lipstick_1",
@@ -23,11 +29,17 @@ const products = [
   },
   {
     name: "Luminous Silk Liquid Foundation",
+    sku: "LX-FND-002",
     description:
       "Weightless, medium-to-full buildable coverage with a natural radiant finish. Formulated with hyaluronic acid for 24-hour hydration.",
     price: 2999,
     category: "Foundation",
-    Stock: 18,
+    Stock: 26,
+    variants: [
+      { id: "f1", sku: "LX-FND-002-F1", shade: "Fair Porcelain", hexColor: "#f6ede0", price: 2999, stock: 8 },
+      { id: "f2", sku: "LX-FND-002-M1", shade: "Medium Warm", hexColor: "#e3bf9a", price: 2999, stock: 12 },
+      { id: "f3", sku: "LX-FND-002-D1", shade: "Deep Caramel", hexColor: "#9e6f47", price: 2999, stock: 6 },
+    ],
     images: [
       {
         public_id: "luxe_foundation_1",
@@ -41,11 +53,16 @@ const products = [
   },
   {
     name: "Golden Sunset Eyeshadow Palette",
+    sku: "LX-EYE-003",
     description:
       "12 highly pigmented warm neutral and shimmer shades designed for seamless blending from daytime subtle to evening glam.",
     price: 2499,
     category: "Eyeshadow",
     Stock: 15,
+    variants: [
+      { id: "e1", sku: "LX-EYE-003-WN", shade: "Warm Neutrals", hexColor: "#c28153", price: 2499, stock: 10 },
+      { id: "e2", sku: "LX-EYE-003-RG", shade: "Rose Gold Luxe", hexColor: "#b76e79", price: 2699, stock: 5 },
+    ],
     images: [
       {
         public_id: "luxe_eyeshadow_1",
@@ -220,6 +237,10 @@ const products = [
 async function seed() {
   try {
     await connectDatabase();
+
+    console.log("Cleaning old product seed data...");
+    await Review.destroy({ where: {} });
+    await Product.destroy({ where: {} });
 
     console.log("Seeding products...");
     for (const item of products) {

@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+.wishlistContainer {
+  max-width: 1200px;
+  margin: 2.5rem auto 5rem;
+  padding: 0 1.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+.wishlistHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #4a044e 0%, #701a75 50%, #86198f 100%);
+  color: white;
+  padding: 2.2rem 2.8rem;
+  border-radius: 24px;
+  box-shadow: 0 14px 30px rgba(112, 26, 117, 0.25);
+  margin-bottom: 2.5rem;
+}
+
+.wishlistBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(253, 244, 255, 0.2);
+  color: #fdf4ff;
+  border: 1px solid rgba(253, 244, 255, 0.35);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.wishlistBadge svg {
+  font-size: 1rem;
+  color: #f472b6;
+}
+
+.wishlistTitleWrap h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin: 0.2rem 0;
+  color: #ffffff;
+}
+
+.wishlistTitleWrap p {
+  color: #f5d0fe;
+  font-size: 0.95rem;
+  margin: 0.3rem 0 0 0;
+}
+
+.wishlistCountPill {
+  background: rgba(255, 255, 255, 0.95);
+  color: #701a75;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Grid */
+.wishlistGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.8rem;
+}
+
+.wishlistCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wishlistCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(112, 26, 117, 0.12);
+  border-color: #f5d0fe;
+}
+
+.wishlistRemoveBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.wishlistRemoveBtn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fca5a5;
+  transform: scale(1.08);
+}
+
+.wishlistRemoveBtn svg {
+  font-size: 1.2rem;
+}
+
+.wishlistImgLink {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f8fafc;
+  display: block;
+}
+
+.wishlistImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.wishlistCard:hover .wishlistImg {
+  transform: scale(1.06);
+}
+
+.wishlistBody {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wishlistCat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #9333ea;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.wishlistProdTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wishlistProdTitle:hover {
+  color: #701a75;
+}
+
+.wishlistRating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.wishlistRating span {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.wishlistPriceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  margin-top: auto;
+}
+
+.wishlistPrice {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.stockStatus {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+}
+
+.stockStatus.inStock {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.stockStatus.outStock {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.moveToBagBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #701a75 0%, #9333ea 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(112, 26, 117, 0.2);
+}
+
+.moveToBagBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(112, 26, 117, 0.3);
+}
+
+.moveToBagBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #94a3b8;
+  box-shadow: none;
+}
+
+.moveToBagBtn svg {
+  font-size: 1.15rem;
+}
+
+/* Empty State */
+.emptyWishlist {
+  background: white;
+  border-radius: 24px;
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.emptyWishlistIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #fdf4ff;
+  color: #c026d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+.emptyWishlistIcon svg {
+  font-size: 2.4rem;
+}
+
+.emptyWishlist h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #1e1b4b;
+  margin: 0 0 0.5rem 0;
+}
+
+.emptyWishlist p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #701a75 0%, #9333ea 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.85rem 1.8rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(112, 26, 117, 0.25);
+  transition: all 0.25s ease;
+}
+
+.exploreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(112, 26, 117, 0.35);
+}
+
+@media screen and (max-width: 600px) {
+  .wishlistHeader {
+    padding: 1.5rem;
+  }
+  .wishlistTitleWrap h1 {
+    font-size: 1.7rem;
+  }
+}

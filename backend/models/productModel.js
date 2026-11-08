@@ -58,6 +58,17 @@ Product.init(
       allowNull: false,
       defaultValue: 0,
     },
+    sku: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
+    variants: {
+      // [{ id, sku, shade, size, stock, price, hexColor, image }]
+      type: DataTypes.JSONB,
+      allowNull: false,
+      defaultValue: [],
+    },
     // Admin who created the product
     user: {
       type: DataTypes.UUID,

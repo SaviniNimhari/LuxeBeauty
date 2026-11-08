@@ -1,109 +1,439 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
 .orderDetailsPage {
-  background-color: white;
+  background-color: #f8fafc;
+  min-height: 90vh;
+  padding: 2.5rem 1.5rem 5rem 1.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
 }
 
-.orderDetailsContainer > h1 {
-  font: 300 3vmax "Roboto";
-  margin: 4vmax 0;
-  color: tomato;
+.orderDetailContent {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.orderDetailsContainer {
-  padding: 5vmax;
-  padding-bottom: 0%;
-}
-
-.orderDetailsContainer > p {
-  font: 400 1.8vmax "Roboto";
-}
-
-.orderDetailsContainerBox,
-.orderDetailsCartItemsContainer {
-  margin: 2vmax;
-}
-
-.orderDetailsContainerBox > div {
+/* Top bar */
+.orderDetailTopBar {
   display: flex;
-  margin: 1vmax 0;
-}
-
-.orderDetailsContainerBox > div > p {
-  font: 400 1vmax "Roboto";
-  color: black;
-}
-.orderDetailsContainerBox > div > span {
-  margin: 0 1vmax;
-  font: 100 1vmax "Roboto";
-  color: #575757;
-}
-
-.orderDetailsCartItems > p {
-  font: 400 1.8vmax "Roboto";
-}
-
-.orderDetailsCartItems {
-  padding: 2vmax 5vmax;
-  border-top: 1px solid rgba(0, 0, 0, 0.164);
-}
-
-.orderDetailsCartItemsContainer > div {
-  display: flex;
-  font: 400 1vmax "Roboto";
+  justify-content: space-between;
   align-items: center;
-  margin: 2vmax 0;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.orderDetailsCartItemsContainer > div > img {
-  width: 3vmax;
-}
-
-.orderDetailsCartItemsContainer > div > a {
-  color: #575757;
-  margin: 0 2vmax;
-  width: 60%;
+.backToOrdersLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b21a8;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: #f3e8ff;
+  transition: all 0.2s ease;
 }
 
-.orderDetailsCartItemsContainer > div > span {
-  font: 100 1vmax "Roboto";
-  color: #5e5e5e;
+.backToOrdersLink:hover {
+  background: #e9d5ff;
+  transform: translateX(-3px);
 }
 
-@media screen and (max-width: 600px) {
-  .orderDetailsContainer > p {
-    font: 400 6vw "Roboto";
-  }
+.printInvoiceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: white;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-  .orderDetailsContainerBox > div {
-    margin: 6vw 0;
-  }
+.printInvoiceBtn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
 
-  .orderDetailsContainerBox > div > p {
-    font: 400 4vw "Roboto";
-  }
-  .orderDetailsContainerBox > div > span {
-    font: 100 4vw "Roboto";
-  }
+/* Status Banner */
+.orderStatusBanner {
+  background: linear-gradient(135deg, #2e1065 0%, #581c87 60%, #7e22ce 100%);
+  color: white;
+  padding: 2.2rem 2.8rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: 0 10px 25px rgba(88, 28, 135, 0.25);
+  margin-bottom: 2rem;
+}
 
-  .orderDetailsCartItems > p {
-    font: 400 6vw "Roboto";
-  }
+.orderNumberPill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
 
-  .orderDetailsCartItemsContainer > div {
-    font: 400 4vw "Roboto";
-    margin: 4vw 0;
-  }
+.orderBannerInfo h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  margin: 0.2rem 0;
+  color: #ffffff;
+}
 
-  .orderDetailsCartItemsContainer > div > img {
-    width: 10vw;
-  }
+.orderBannerInfo p {
+  color: #e9d5ff;
+  font-size: 0.95rem;
+  margin: 0.3rem 0 0 0;
+}
 
-  .orderDetailsCartItemsContainer > div > a {
-    margin: 2vw;
-    width: 30%;
-  }
+.statusPill {
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 0.5rem 1.4rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-block;
+}
 
-  .orderDetailsCartItemsContainer > div > span {
-    font: 100 4vw "Roboto";
+.pillDelivered {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.pillShipped {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.pillProcessing {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Shipment Stepper Card */
+.shipmentTrackerCard {
+  background: white;
+  border-radius: 20px;
+  padding: 2.2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2rem;
+}
+
+.trackerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.trackerHeader h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0f172a;
+  font-size: 1.2rem;
+}
+
+.trackerHeader h3 svg {
+  color: #9333ea;
+}
+
+.trackingNumber {
+  font-family: monospace;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Stepper Bar */
+.stepperWrapper {
+  position: relative;
+  padding: 1.5rem 0;
+}
+
+.stepperProgressLine {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #9333ea, #c084fc);
+  z-index: 1;
+  transition: width 0.5s ease;
+}
+
+.stepperWrapper::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+
+.stepperSteps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.stepperStepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 120px;
+}
+
+.stepIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #94a3b8;
+  border: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.stepCompleted .stepIconWrap {
+  background: #9333ea;
+  color: white;
+  box-shadow: 0 4px 14px rgba(147, 51, 234, 0.4);
+}
+
+.stepCurrent .stepIconWrap {
+  background: #c026d3;
+  color: white;
+  transform: scale(1.12);
+  box-shadow: 0 4px 18px rgba(192, 38, 211, 0.5);
+}
+
+.stepLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+
+.stepCompleted .stepLabel {
+  color: #0f172a;
+}
+
+.stepDesc {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Info Cards Grid */
+.orderInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.infoCard {
+  background: white;
+  border-radius: 18px;
+  padding: 1.8rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.infoCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.infoCardHeader svg {
+  color: #9333ea;
+  font-size: 1.3rem;
+}
+
+.infoCardHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.infoCardBody p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.45;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.recipientName {
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+.paymentRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f8fafc;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.payStatusBadge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.payStatusBadge.paid {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.payStatusBadge.unpaid {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.payRef {
+  font-family: monospace;
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.payTotalAmount {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #9333ea;
+}
+
+/* Order Items */
+.orderItemsSection {
+  background: white;
+  border-radius: 18px;
+  padding: 1.8rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.orderItemsSection h3 {
+  margin: 0 0 1.2rem 0;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.orderItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderItemRow {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.orderItemRow:last-child {
+  border-bottom: none;
+}
+
+.orderItemImg {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+}
+
+.orderItemDetails {
+  flex: 1;
+}
+
+.orderItemTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: none;
+  display: block;
+}
+
+.orderItemTitle:hover {
+  color: #9333ea;
+}
+
+.orderItemQtyPrice {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.orderItemSubtotal {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .orderInfoGrid {
+    grid-template-columns: 1fr;
+  }
+  .stepperSteps {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .stepperStepItem {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: 1rem;
+  }
+  .stepperProgressLine,
+  .stepperWrapper::before {
+    display: none;
   }
 }

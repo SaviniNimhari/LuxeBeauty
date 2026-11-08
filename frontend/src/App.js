@@ -17,6 +17,7 @@ import GlobalLoginButton from "./component/layout/Header/GlobalLoginButton";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import UserDashboard from "./component/User/UserDashboard";
+import Wishlist from "./component/Wishlist/Wishlist";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile";
 import UpdatePassword from "./component/User/UpdatePassword";
@@ -99,6 +100,7 @@ function App() {
         <Route exact path="/about" component={About} />
 
         <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
+        <ProtectedRoute exact path="/wishlist" component={Wishlist} />
 
         <ProtectedRoute exact path="/account" component={Profile} />
 
@@ -130,6 +132,7 @@ function App() {
 
         {/* Customer Dashboard */}
         <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
+        <ProtectedRoute exact path="/wishlist" component={Wishlist} />
 
         {/* Seller Dashboard & Seller Features */}
         <ProtectedRoute

@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 
 // Add to Cart
-export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
+export const addItemsToCart = (id, quantity, variant = null) => async (dispatch, getState) => {
   const { isAuthenticated } = getState().user;
   if (!isAuthenticated) {
     return;
@@ -18,11 +18,15 @@ export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
     type: ADD_TO_CART,
     payload: {
       product: data.product._id,
-      name: data.product.name,
-      price: data.product.price,
-      image: data.product.images[0].url,
-      stock: data.product.Stock,
+      name: variant && (variant.shade || variant.size)
+        ? `${data.product.name} (${variant.shade || variant.size})`
+        : data.product.name,
+      price: variant && variant.price ? variant.price : data.product.price,
+      image: variant && variant.image ? variant.image : (data.product.images && data.product.images[0] ? data.product.images[0].url : ""),
+      stock: variant && typeof variant.stock !== "undefined" ? variant.stock : data.product.Stock,
       quantity,
+      variant: variant || null,
+      sku: variant && variant.sku ? variant.sku : (data.product.sku || data.product._id),
     },
   });
 

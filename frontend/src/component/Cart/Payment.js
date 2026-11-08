@@ -301,6 +301,12 @@ const Payment = ({ history }) => {
                 <span>Items Subtotal</span>
                 <span>Rs. {orderInfo.subtotal.toLocaleString()}</span>
               </div>
+              {orderInfo.discountAmount > 0 && (
+                <div className="totalLine" style={{ color: "#16a34a", fontWeight: 600 }}>
+                  <span>Coupon Discount ({orderInfo.couponCode || "PROMO"})</span>
+                  <span>- Rs. {orderInfo.discountAmount.toLocaleString()}</span>
+                </div>
+              )}
               <div className="totalLine">
                 <span>Shipping Charges</span>
                 <span>

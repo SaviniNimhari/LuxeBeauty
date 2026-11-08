@@ -1,353 +1,334 @@
 # LuxeBeauty — Luxury Cosmetics E-Commerce Platform
 
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-336791?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Sequelize](https://img.shields.io/badge/Sequelize-ORM-52B0E7?style=flat&logo=sequelize&logoColor=white)](https://sequelize.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-16+-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-Backend-000000?style=flat&logo=express&logoColor=white)](https://expressjs.com/)
-[![React](https://img.shields.io/badge/React-17+-61DAFB?style=flat&logo=react&logoColor=black)](https://reactjs.org/)
-[![Redux](https://img.shields.io/badge/Redux-State%20Management-764ABC?style=flat&logo=redux&logoColor=white)](https://redux.js.org/)
-[![Stripe](https://img.shields.io/badge/Stripe-Payment%20Gateway-008CDD?style=flat&logo=stripe&logoColor=white)](https://stripe.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-v6%20ORM-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-REST%20API-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![React](https://img.shields.io/badge/React-17+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Redux](https://img.shields.io/badge/Redux-State%20Management-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
+[![Docker](https://img.shields.io/badge/Docker-Multi--Stage%20Container-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![Jest](https://img.shields.io/badge/Tested%20with-Jest%20%26%20Supertest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+[![Stripe](https://img.shields.io/badge/Stripe-Payment%20Gateway%20%26%20Webhooks-008CDD?style=for-the-badge&logo=stripe&logoColor=white)](https://stripe.com/)
+[![OpenAPI](https://img.shields.io/badge/OpenAPI-Swagger%203.0%20Docs-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](http://localhost:4000/api-docs)
 
-A modern, full-stack cosmetics and beauty sanctuary built with **PostgreSQL**, **Sequelize**, **Express.js**, **React.js**, and **Node.js** (PERN stack). Features a luxury aesthetic, three-tier multi-role access (Customer, Seller, Admin), interactive business analytics, and an integrated order invoice receipt checkout system.
+> An enterprise-grade, portfolio-level cosmetics e-commerce platform built on the **PERN stack** (PostgreSQL, Express.js, React.js, Node.js). Engineered with ACID database transactions, multi-role RBAC security, multi-variant SKU architecture, automated CI/CD workflows, Docker containerization, and interactive Swagger API documentation.
 
 ---
 
 ## 📑 Table of Contents
 
-1. [Key Features](#-key-features)
-2. [Multi-Role Architecture & Dashboards](#-multi-role-architecture--dashboards)
-3. [Checkout & Invoice Receipt System](#-checkout--invoice-receipt-system)
-4. [Demo Credentials & Quick Login](#-demo-credentials--quick-login)
-5. [Tech Stack](#-tech-stack)
-6. [Prerequisites](#-prerequisites)
-7. [Installation & Setup](#-installation--setup)
-8. [Database Seeding](#-database-seeding)
-9. [Running the Application](#-running-the-application)
-10. [REST API Reference](#-rest-api-reference)
-11. [Project Structure](#-project-structure)
-12. [Troubleshooting & FAQ](#-troubleshooting--faq)
-13. [License & Copyright](#-license--copyright)
+1. [Architecture & System Design](#-architecture--system-design)
+2. [Why PERN Stack? (Architectural Decision)](#-why-pern-stack-architectural-decision)
+3. [Key Enterprise Features](#-key-enterprise-features)
+4. [Multi-Role Portals & Dashboards](#-multi-role-portals--dashboards)
+5. [Docker & Containerized Deployment](#-docker--containerized-deployment)
+6. [CI/CD Pipeline (GitHub Actions)](#-cicd-pipeline-github-actions)
+7. [Interactive Swagger API Documentation](#-interactive-swagger-api-documentation)
+8. [Automated Testing Suite](#-automated-testing-suite)
+9. [Skills & Engineering Standards Demonstrated](#-skills--engineering-standards-demonstrated)
+10. [Demo Credentials & Quick Login](#-demo-credentials--quick-login)
+11. [Local Installation & Setup](#-local-installation--setup)
+12. [Cloud Deployment Guide](#-cloud-deployment-guide)
+13. [REST API Reference](#-rest-api-reference)
+14. [Project Structure](#-project-structure)
+15. [License](#-license)
 
 ---
 
-## ✨ Key Features
+## 🏛️ Architecture & System Design
 
-- **🛍️ 3-Tier Multi-Role Architecture**: Independent dashboards and permissions for **Customers**, **Sellers**, and **Admins**.
-- **🧾 Integrated Invoice Receipt Checkout (`/process/payment`)**:
-  - Live generated order receipt with receipt number, customer details, delivery address, itemized products, GST tax, and shipping calculation.
-  - One-click **Print Receipt / PDF Export** button with dedicated `@media print` styling.
-- **💳 Secure Payment Processing**: Stripe Card Elements integration with local sandbox/demo fallback for instant testing.
-- **⚡ One-Click Demo Logins**: Pre-populated demo switcher on `/login` to test all three user tiers without manual entry.
-- **📊 Business Analytics & Data Visualization**:
-  - Store gross revenue line charts and inventory stock health doughnut charts powered by Chart.js.
-  - Demographic distribution of registered users (Customers vs. Sellers vs. Admins).
-- **💄 Luxury Beauty Catalog**: Search, filter by category/price/rating, verified customer reviews, and stock alerts.
+```
+                                 ┌──────────────────────────────────────────────┐
+                                 │                CLIENT LAYER                  │
+                                 │       React.js SPA + Redux State Store       │
+                                 │   Shimmer Skeletons, Swatches & Stepper UI   │
+                                 └──────────────────────┬───────────────────────┘
+                                                        │ HTTP / Secure Cookie JWT
+                                                        ▼
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                       EXPRESS.JS BACKEND GATEWAY                                       │
+│                                                                                                        │
+│  [Helmet Security]  ──►  [Rate Limiters (Auth & API)]  ──►  [Gzip Compression]  ──►  [Swagger /api-docs] │
+│                                                                                                        │
+│  [Stripe Webhooks (/webhook)] (Raw HMAC Signature Validation)                                          │
+│                                                                                                        │
+│  [Controllers] ──► [Service Layer (ProductService, OrderService)] ──► [Multi-Tier Cache (Redis / Mem)]│
+└───────────────────────────────────────────────┬────────────────────────────────────────────────────────┘
+                                                │
+                                                ▼ Sequelize ORM
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   POSTGRESQL RELATIONAL DATABASE                                      │
+│                                                                                                        │
+│   • ACID Transactions on Checkout & Inventory Deduction (Prevent Overselling & Race Conditions)        │
+│   • Tables: Users (RBAC), Products, ProductVariants (JSONB), Orders, OrderItems, Reviews, Wishlists,   │
+│     Coupons, Payments                                                                                  │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 👥 Multi-Role Architecture & Dashboards
+## 💡 Why PERN Stack? (Architectural Decision)
 
-```
-                               ┌─── Customer Portal (/dashboard)
-                               │
-[LuxeBeauty Authentication] ───┼─── Seller Portal   (/seller/dashboard)
-                               │
-                               └─── Admin Control   (/admin/dashboard)
-```
-
-### 1. Customer Member Portal (`/dashboard`)
-- **VIP Welcome Banner**: Displays membership tier and personalized greeting.
-- **Quick Metrics**: Total Orders placed, items in shopping bag, and membership tenure.
-- **Order History**: Real-time status tags (`Delivered`, `Processing`), date, price, and direct link to order details.
-- **Quick Actions**: Shortcuts to view orders, bag, update profile, and change password.
-
-### 2. Seller Merchant Operations Hub (`/seller/dashboard`)
-- **Verified Merchant Banner**: Immediate access to add products and view the live public storefront.
-- **KPI Metrics**: Total Gross Revenue, Active Products count, Orders Received, and Out-of-Stock warnings.
-- **Interactive Visualizations**:
-  - **Revenue Line Chart**: Real-time track of store sales.
-  - **Inventory Health Doughnut Chart**: In-Stock vs. Out-of-Stock ratios.
-- **Product Snapshot**: View recently added catalog items with stock badges and quick "Edit" links.
-- **Orders Snapshot**: Review customer orders and process fulfillment.
-
-### 3. Admin Master Control Panel (`/admin/dashboard`)
-- **Platform Analytics**: Total revenue, products, orders, and total registered users.
-- **User Demographics Breakdown**: Live count of registered **Customers**, **Sellers**, and **Admins**.
-- **Catalog & Inventory Control**: Create, update, or remove any cosmetic product across the platform.
-- **User Management**: View user details, change user roles, and delete accounts.
-- **Reviews Moderation**: Inspect and moderate customer reviews and ratings.
+E-commerce backends handle deeply interdependent relational data:
+- **Relational Integrity**: Customers, orders, order items, coupons, and seller inventory have strict foreign key relationships that require referential consistency.
+- **ACID Transactions**: When a customer purchases multiple items, stock decrement and order creation must succeed or fail as a single unit of work. PostgreSQL provides true transactional isolation (`SERIALIZABLE` / `READ COMMITTED`) preventing oversell race conditions.
+- **Production Standard**: PostgreSQL is widely considered the industry benchmark for commercial financial systems and transactional commerce platforms.
 
 ---
 
-## 🧾 Checkout & Invoice Receipt System
+## ✨ Key Enterprise Features
 
-During checkout at `/process/payment`, customers are presented with a modern side-by-side view:
+- **⚡ ACID Database Transactions & Inventory Safety**:
+  - Checkout and stock deductions are executed inside isolated `sequelize.transaction()` blocks.
+  - Pre-validates variant stock availability before decrementing; automatically rolls back changes and restores inventory upon order cancellation.
+- **🛡️ Strict Seller Scoping & RBAC**:
+  - Dedicated access control for **Customers**, **Sellers**, and **Admins**.
+  - Sellers can only inspect, edit, or delete catalog items they authored, and view orders containing their line items.
+- **🎨 Multi-Variant Cosmetic Shades & SKU Engine**:
+  - Products support individual SKUs and multiple variant options (e.g. lipstick shades like *Ruby Rouge*, *Nude Petal*, *Velvet Plum*; foundation tones; bottle volumes).
+  - Interactive swatch selectors on product pages dynamically update pricing, SKU, and available stock limits.
+- **💳 Production-Grade Stripe Webhooks**:
+  - Cryptographic HMAC signature verification (`stripe.webhooks.constructEvent`) on `/api/v1/stripe/webhook` with raw binary body parsing.
+  - Automatically reconciles `payment_intent.succeeded`, `payment_intent.payment_failed`, and `charge.refunded` events.
+- **💖 Customer Wishlist System (`/wishlist`)**:
+  - Dedicated wishlist model, endpoints, Redux store, and 1-click heart toggles with "Move to Cart" actions.
+- **🎟️ Promotional Coupons & Discounts**:
+  - Validates discount codes (`LUXE10`, `WELCOME20`, `FLAT500`, `GLOWVIP`) against minimum order spend and expiration dates.
+- **🚚 5-Step Order Shipment Tracker (`/order/:id`)**:
+  - Real-time stepper: `Order Placed` ➔ `Payment Confirmed` ➔ `Processing & Packed` ➔ `Dispatched & In Transit` ➔ `Delivered`.
+- **🧾 Itemized Invoice Receipts (`/process/payment`)**:
+  - Printable receipt with live tax, shipping, and billing details alongside card payment fields.
+- **⭐ Advanced Customer Review System**:
+  - Rating breakdown distribution card (5★ through 1★ percentage bars), verified buyer badges, and helpful review voting.
+- **🚀 Performance Optimization**:
+  - Gzip response compression (`compression` middleware).
+  - Static asset caching (`Cache-Control: public, max-age=86400`).
+  - Shimmering skeleton loaders with pre-reserved aspect ratios preventing Cumulative Layout Shift (CLS).
 
+---
+
+## 👥 Multi-Role Portals & Dashboards
+
+| Role | Portal Route | Capabilities |
+| :--- | :--- | :--- |
+| **Customer** | `/dashboard` | Order history, active shipment statuses, shopping bag summary, saved wishlist. |
+| **Seller** | `/seller/dashboard` | Merchant sales charts, inventory health doughnut, scoped catalog & order operations. |
+| **Admin** | `/admin/dashboard` | Platform gross revenue, user demographic breakdown, global product & order moderation. |
+
+---
+
+## 🐳 Docker & Containerized Deployment
+
+LuxeBeauty features a multi-stage production `Dockerfile` and `docker-compose.yml` orchestrating PostgreSQL, Redis, and the full-stack Node.js runtime:
+
+```bash
+# 1. Build and launch all services in detached mode
+docker-compose up -d --build
+
+# 2. View running service logs
+docker-compose logs -f app
+
+# 3. Stop containers and preserve database volumes
+docker-compose down
 ```
-┌───────────────────────────────────────┬───────────────────────────────────────┐
-│       OFFICIAL ORDER RECEIPT          │        CARD PAYMENT GATEWAY           │
-│                                       │                                       │
-│ • Receipt #: LXB-XXXXXX               │ • Accepted: Visa, Mastercard, Amex    │
-│ • Date: Nov 8, 2026                   │ • Cardholder Name                     │
-│ • Status: Awaiting Payment            │ • Card Number [•••• •••• •••• ••••]   │
-│                                       │ • Expiry Date [MM / YY]               │
-│ Billed To: Jane Doe (jane@email.com)  │ • CVV / CVC   [•••]                   │
-│ Delivery Address: 123 Luxury Ave, CA  │                                       │
-│                                       │ 💡 Test Card: 4242 •••• •••• 4242     │
-│ Order Items:                          │                                       │
-│  - Velvet Matte Rouge Lipstick x2     │ [ Pay Rs. 3,538 Now ]                 │
-│  - Luminous Silk Foundation    x1     │                                       │
-│                                       │ 🔒 256-Bit SSL Encrypted & PCI-DSS    │
-│ Subtotal:   Rs. 2,998                 │                                       │
-│ Shipping:   FREE (Over Rs. 1,000)     │                                       │
-│ GST (18%):  Rs. 540                   │                                       │
-│ Total Due:  Rs. 3,538                 │                                       │
-│                                       │                                       │
-│ [ 🖨️ Print Receipt ]                   │                                       │
-└───────────────────────────────────────┴───────────────────────────────────────┘
+
+The application will be live at `http://localhost:4000`.
+
+---
+
+## 🔄 CI/CD Pipeline (GitHub Actions)
+
+Located at [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
+- **Automated Service Container**: Spawns an isolated PostgreSQL 15 container for automated testing.
+- **Root & Frontend Dependencies**: Installs dependencies with `npm ci`.
+- **Database Seeding**: Runs automated migrations and user/product/coupon seeders.
+- **Automated Test Execution**: Runs 5 Jest + Supertest suites ensuring 0 regression errors.
+- **Frontend Build**: Compiles production React assets.
+- **Docker Build Validation**: Validates multi-stage Docker build artifact.
+
+---
+
+## 📖 Interactive Swagger API Documentation
+
+Interactive OpenAPI 3.0 documentation is served live at:
+```
+http://localhost:4000/api-docs
+```
+Allows testing all authentication, product, order, coupon, and webhook endpoints directly from the browser.
+
+---
+
+## 🧪 Automated Testing Suite
+
+Run the automated backend test suite with Jest & Supertest:
+
+```bash
+npm test
 ```
 
-- **Resilient Fallback**: If the page is accessed or refreshed directly, totals are automatically computed on the fly from the cart.
-- **Print Optimization**: Clicking **Print Receipt** isolates the invoice and strips away navigation for clean paper or PDF printing.
+### Test Coverage Summary:
+- **`health.test.js`**: System uptime, environment healthcheck (`/health`), and Swagger docs route.
+- **`security.test.js`**: Helmet headers (`nosniff`, `frame-options`), rate limiting headers, and 401 response handling.
+- **`webhook.test.js`**: Cryptographic Stripe webhook event handling (`payment_intent.succeeded` & `payment_intent.payment_failed`).
+- **`coupon.test.js`**: Percentage discounts (`LUXE10`), flat discounts (`FLAT500`), and invalid code rejection (`404`).
+- **`product.test.js`**: Product catalog retrieval, category filtering, SKUs, and variant arrays.
+
+---
+
+## 🎓 Skills & Engineering Standards Demonstrated
+
+| Skill Area | Implementation in LuxeBeauty |
+| :--- | :--- |
+| **ES6+ JavaScript & Node.js** | Async/await, modular ES modules, stream handling, raw buffers. |
+| **Express Architecture** | Layered design: Controllers, Service Layer, Repositories, Centralized Error Handling. |
+| **PostgreSQL & Advanced SQL** | Relational schemas, indexing (`category`, `price`), JSONB variants, transactions. |
+| **Cybersecurity & Auth** | JWT with HttpOnly SameSite/Secure cookies, Helmet headers, IP rate limiters. |
+| **React & Modern UI** | Custom Hooks, Redux store, CSS Grid, Fluid Typography (`clamp`), Shimmer Skeletons. |
+| **Automated Testing** | Jest test runner, Supertest HTTP mocking, CI database service containers. |
+| **DevOps & CI/CD** | Multi-stage Docker builds, Docker Compose orchestration, GitHub Actions CI pipeline. |
+| **API Design & Docs** | RESTful design standards, OpenAPI 3.0 Swagger UI documentation. |
 
 ---
 
 ## 🔑 Demo Credentials & Quick Login
 
-Three pre-seeded accounts are available out of the box:
+Pre-seeded credentials for instant multi-role testing (also accessible via 1-click autofill on `/login`):
 
-| Role | Email | Password | Allowed Access |
+| Role | Email | Password | Access Level |
 | :--- | :--- | :--- | :--- |
-| **🛍️ Customer** | `customer@luxebeauty.com` | `Password123!` | `/dashboard`, `/orders`, `/cart`, `/account` |
-| **💼 Seller** | `seller@luxebeauty.com` | `Password123!` | `/seller/dashboard`, `/admin/products`, `/admin/orders` |
-| **👑 Admin** | `admin@luxebeauty.com` | `Password123!` | `/admin/dashboard`, `/admin/users`, `/admin/reviews`, all portals |
-
-> **Quick Login UI:** On the [`/login`](http://localhost:3000/login) page, click any of the **Demo Credentials** buttons to instantly populate credentials and log in.
+| **Customer** | `customer@luxebeauty.com` | `Password123!` | Public catalog, cart, orders, wishlist |
+| **Seller** | `seller@luxebeauty.com` | `Password123!` | Merchant dashboard, owned product management |
+| **Admin** | `admin@luxebeauty.com` | `Password123!` | Master admin panel, user & review moderation |
 
 ---
 
-## 🛠️ Tech Stack
+## 💻 Local Installation & Setup
 
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | React 17, Redux, Redux Thunk, React Router v5, Material-UI, Chart.js, react-chartjs-2 |
-| **Backend** | Node.js, Express.js, Sequelize ORM, PostgreSQL (`pg`, `pg-hstore`) |
-| **Authentication** | JWT (JSON Web Tokens), bcryptjs, HTTP-only Cookie Parser |
-| **Payments** | Stripe API, `@stripe/react-stripe-js`, `@stripe/stripe-js` |
-| **Media / Storage** | Cloudinary SDK (product images & user avatars) |
-| **Styling** | Custom CSS3, CSS Grid, Flexbox, Google Fonts (Inter & Playfair Display) |
+### 1. Prerequisites
+- **Node.js** v18+ & **npm** v9+
+- **PostgreSQL** v14+ running locally or hosted (Neon, Render, Supabase)
 
----
-
-## 📋 Prerequisites
-
-- **Node.js** (v16.x or newer) and **npm**
-- **PostgreSQL** (v12 or newer) installed locally or a cloud database URL (Neon, Supabase, Render, ElephantSQL)
-- *(Optional)* Cloudinary account for media upload
-- *(Optional)* Stripe account for live payment processing
-
----
-
-## 🚀 Installation & Setup
-
-### 1. Clone & Install Dependencies
-
-From the project root:
-
+### 2. Clone & Install
 ```bash
-# Install backend dependencies
+git clone https://github.com/your-username/LuxeBeauty.git
+cd LuxeBeauty
+
+# Install root backend dependencies
 npm install
 
 # Install frontend dependencies
-cd frontend
-npm install
-cd ..
+npm install --prefix frontend
 ```
 
-### 2. Configure Environment Variables
-
-Create your configuration file from the template:
-
-```bash
-# Windows PowerShell
-Copy-Item backend\config\config.env.example backend\config\config.env
-
-# Linux / macOS
-cp backend/config/config.env.example backend/config/config.env
-```
-
-Update `backend/config/config.env` with your PostgreSQL database details:
-
+### 3. Environment Configuration
+Create `backend/config/config.env` (refer to `config.env.example`):
 ```env
 PORT=4000
+NODE_ENV=development
 DB_URI=postgres://postgres:password@127.0.0.1:5432/luxebeauty
 DB_SSL=false
-DB_SYNC_ALTER=false
-DB_LOGGING=false
-
-# Stripe Payment
-STRIPE_API_KEY=your_stripe_publishable_key
-STRIPE_SECRET_KEY=your_stripe_secret_key
-
-# JWT & Cookie
 JWT_SECRET=your_super_secret_jwt_key
 JWT_EXPIRE=5d
 COOKIE_EXPIRE=5
-
-# Cloudinary
-CLOUDINARY_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+STRIPE_API_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+REDIS_URL=redis://127.0.0.1:6379
 ```
 
-Create the PostgreSQL database (if it does not already exist):
-```sql
-CREATE DATABASE luxebeauty;
-```
-
----
-
-## 💾 Database Seeding
-
-Populate your database with demo users, cosmetic products, and customer reviews:
-
+### 4. Database Seeding
 ```bash
-# 1. Seed demo accounts (Customer, Seller, Admin)
-npm run seed:users
-
-# 2. Seed makeup products & customer reviews
-npm run seed
-
-# 3. Or seed everything in a single command
+# Seed demo accounts, promotional coupons, and cosmetics catalog
 npm run seed:all
 ```
 
----
-
-## 💻 Running the Application
-
-### Development Mode
-
-Run the Express API backend with automatic restart:
+### 5. Start Development Server
 ```bash
+# Terminal 1: Start backend API
 npm run dev
-```
-*(Runs on `http://localhost:4000`)*
 
-In a separate terminal, start the React frontend:
-```bash
+# Terminal 2: Start React frontend
 cd frontend
 npm start
 ```
-*(Runs on `http://localhost:3000`)*
 
-### Production Build
+---
 
-Compile the React frontend:
-```bash
-npm run build --prefix frontend
-```
+## ☁️ Cloud Deployment Guide
 
-Start the production server:
-```bash
-npm start
-```
-The Express backend will serve the REST API and the production build located in `frontend/build`.
+### Deploying to Render / Railway / Heroku
+
+1. **Database**: Provision a managed PostgreSQL instance (e.g., on Render, Neon, or Railway) and copy the `DATABASE_URL`.
+2. **Environment Variables**:
+   Set `NODE_ENV=production`, `DATABASE_URL`, `DB_SSL=true`, `JWT_SECRET`, `STRIPE_API_KEY`, `STRIPE_SECRET_KEY`, and `STRIPE_WEBHOOK_SECRET`.
+3. **Build Command**:
+   ```bash
+   npm install && npm run build --prefix frontend
+   ```
+4. **Start Command**:
+   ```bash
+   npm start
+   ```
 
 ---
 
 ## 📡 REST API Reference
 
-### Authentication & Users (`/api/v1`)
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| `POST` | `/register` | Register new customer account | Public |
-| `POST` | `/login` | Authenticate user & issue JWT cookie | Public |
-| `GET` | `/logout` | Clear auth cookie | Logged In |
-| `GET` | `/me` | Get currently logged-in user profile | Logged In |
-| `PUT` | `/me/update` | Update user name & email | Logged In |
-| `PUT` | `/password/update` | Change account password | Logged In |
-| `GET` | `/admin/users` | Retrieve all registered users | Admin |
-| `GET` | `/admin/user/:id` | Get details of a single user | Admin |
-| `PUT` | `/admin/user/:id` | Update user role (admin/seller/user) | Admin |
-| `DELETE` | `/admin/user/:id` | Delete user account | Admin |
-
-### Products (`/api/v1`)
-| Method | Endpoint | Description | Access |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/products` | Get products with search & pagination | Public |
-| `GET` | `/product/:id` | Get single product details | Public |
-| `GET` | `/admin/products` | Get all products for catalog management | Seller / Admin |
-| `POST` | `/admin/product/new` | Create a new cosmetic product | Seller / Admin |
-| `PUT` | `/admin/product/:id` | Update product details / stock | Seller / Admin |
-| `DELETE` | `/admin/product/:id` | Delete a product | Seller / Admin |
-| `PUT` | `/review` | Create or update customer review | Logged In |
-| `GET` | `/reviews` | Get all reviews for a product | Public |
-| `DELETE` | `/reviews` | Delete a product review | Admin |
-
-### Orders & Payment (`/api/v1`)
-| Method | Endpoint | Description | Access |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/order/new` | Create order after payment | Logged In |
-| `GET` | `/orders/me` | Get logged-in user's orders | Logged In |
-| `GET` | `/order/:id` | Get single order details | Logged In |
-| `GET` | `/admin/orders` | View all customer orders | Seller / Admin |
-| `PUT` | `/admin/order/:id` | Update order fulfillment status | Seller / Admin |
-| `DELETE` | `/admin/order/:id` | Delete an order | Admin |
-| `POST` | `/payment/process` | Initiate Stripe PaymentIntent | Logged In |
-| `GET` | `/stripeapikey` | Retrieve Stripe public key | Logged In |
+| `GET` | `/api/v1/health` | Healthcheck & system status | Public |
+| `GET` | `/api-docs` | Interactive Swagger API documentation | Public |
+| `POST` | `/api/v1/register` | Register new user account | Public |
+| `POST` | `/api/v1/login` | Authenticate & issue HttpOnly JWT | Public |
+| `GET` | `/api/v1/logout` | Clear authentication cookie | Logged In |
+| `GET` | `/api/v1/products` | Retrieve catalog with filters & pagination | Public |
+| `GET` | `/api/v1/product/:id` | Get product details, SKUs & shades | Public |
+| `POST` | `/api/v1/order/new` | Atomic ACID checkout & stock decrement | Logged In |
+| `GET` | `/api/v1/orders/me` | Logged-in user's order history | Logged In |
+| `POST` | `/api/v1/coupon/validate`| Validate promo coupon & compute discount | Public |
+| `POST` | `/api/v1/stripe/webhook` | Stripe cryptographic webhook reconciliation | Public / Stripe |
+| `GET` | `/api/v1/wishlist` | Retrieve saved user wishlist | Logged In |
+| `POST` | `/api/v1/wishlist/toggle`| Add/remove product from wishlist | Logged In |
 
 ---
 
-## 🗂️ Project Structure
+## 📂 Project Structure
 
 ```
 LuxeBeauty/
 ├── backend/
-│   ├── config/             # Database connection & env loader
-│   ├── controllers/        # Order, Payment, Product, User business logic
-│   ├── middleware/         # Auth, Role authorization, Async handlers, Errors
-│   ├── models/             # Sequelize Models (User, Product, Order, Review)
-│   ├── routes/             # Express API route endpoints
-│   ├── utils/              # JWT, Emailer, API features, Seed scripts
-│   └── server.js           # Main Express server entry point
-│
+│   ├── config/              # PostgreSQL Sequelize connection & environment configs
+│   ├── controllers/         # Thin controllers (auth, products, orders, coupons, webhooks)
+│   ├── docs/                # OpenAPI 3.0 Swagger specification
+│   ├── middleware/          # JWT auth guards, RBAC role authorization, error handlers
+│   ├── models/              # Sequelize models (User, Product, Order, Coupon, Wishlist)
+│   ├── routes/              # Express API route declarations
+│   ├── services/            # Business service layer (OrderService, ProductService)
+│   ├── tests/               # Automated Jest & Supertest integration test suites
+│   ├── utils/               # JWT token dispatchers, caching layer, database seeders
+│   ├── app.js               # Express application initialization & middleware stack
+│   └── server.js            # Node HTTP server bootstrap
 ├── frontend/
-│   ├── public/             # Static public assets, index.html
-│   └── src/
-│       ├── actions/        # Redux action creators (Cart, Order, Product, User)
-│       ├── component/
-│       │   ├── Admin/      # Admin Dashboard, Products, Orders, Users, Reviews
-│       │   ├── Cart/       # Cart, Shipping, ConfirmOrder, Payment (with Receipt)
-│       │   ├── Home/       # Landing page, Banner, Featured products
-│       │   ├── Order/      # MyOrders, OrderDetails
-│       │   ├── Product/    # Product Details, Search, Filters
-│       │   ├── Route/      # ProtectedRoute (Role-based access guard)
-│       │   ├── Seller/     # Seller Dashboard & Merchant operations
-│       │   ├── User/       # Customer Dashboard, Login/Register, Profile
-│       │   └── layout/     # Header, Footer, Navigation, MetaData, Loaders
-│       ├── constants/      # Redux action type constants
-│       ├── reducers/       # Redux state reducers
-│       ├── store.js        # Redux store configuration
-│       └── App.js          # App routing and Providers
-│
-└── package.json            # Root configuration and seed scripts
+│   ├── src/
+│   │   ├── actions/         # Redux action creators (products, cart, wishlist, orders)
+│   │   ├── component/       # React components (Home, ProductDetails, Cart, Dashboards)
+│   │   ├── constants/       # Redux action types
+│   │   ├── reducers/        # Redux state reducers
+│   │   ├── store.js         # Central Redux store configuration
+│   │   ├── App.js           # Route definitions & protected route guards
+│   │   └── index.js         # React root mounting
+│   └── package.json
+├── .github/workflows/ci.yml # Automated GitHub Actions CI/CD test & build pipeline
+├── Dockerfile               # Production multi-stage Docker build
+├── docker-compose.yml       # Multi-container orchestration (PostgreSQL, Redis, App)
+├── package.json             # Root backend dependencies & scripts
+└── README.md
 ```
 
 ---
 
-## ❓ Troubleshooting & FAQ
+## 📄 License
 
-1. **Database connection error (`connect ECONNREFUSED 127.0.0.1:5432`)**:
-   - Ensure the PostgreSQL service is running on your system (`services.msc` on Windows or `sudo systemctl status postgresql` on Linux).
-   - Verify that your credentials in `backend/config/config.env` match your local PostgreSQL setup.
-2. **Missing demo accounts**:
-   - Run `npm run seed:users` to re-seed or reset the demo Customer, Seller, and Admin credentials.
-3. **Stripe payment in development mode**:
-   - The payment gateway features a built-in sandbox fallback. If no live Stripe keys are provided, transactions complete successfully in test mode.
-
----
-
-## 🔒 License & Copyright
-
-Private & Proprietary. All rights reserved.
+This repository is proprietary software. All rights reserved.
+`"private": true`, `"license": "UNLICENSED"`.

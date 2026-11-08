@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
-import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
+import ProductCardSkeleton from "../layout/Loader/ProductCardSkeleton";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
@@ -22,13 +22,11 @@ const categories = [
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
-
   const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("");
-
   const [ratings, setRatings] = useState(0);
 
   const {
@@ -49,7 +47,8 @@ const Products = ({ match }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-  let count = filteredProductsCount;
+
+  const count = filteredProductsCount;
 
   useEffect(() => {
     if (error) {
@@ -62,78 +61,136 @@ const Products = ({ match }) => {
 
   return (
     <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Fragment>
-          <MetaData title="PRODUCTS -- LUXEBEAUTY" />
-          <h2 className="productsHeading">Products</h2>
+      <MetaData title="Explore Luxury Beauty -- LUXEBEAUTY" />
 
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+      <div className="productsHeaderBanner">
+        <h1 className="productsMainHeading">Curated Beauty Collection</h1>
+        <p className="productsSubHeading">
+          Immerse yourself in artisanal cosmetics, high-performance skincare, and iconic fragrances
+        </p>
+      </div>
+
+          <div className="productsPageContainer">
+            {/* Filter Sidebar */}
+            <aside className="filterBox">
+              <div className="filterBoxHeader">
+                <h3 className="filterTitle">Refine By</h3>
+                {(category || ratings > 0 || price[0] > 0 || price[1] < 25000) && (
+                  <button
+                    className="clearFiltersBtn"
+                    onClick={() => {
+                      setCategory("");
+                      setRatings(0);
+                      setPrice([0, 25000]);
+                    }}
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+
+              {/* Price Filter */}
+              <div className="filterSection">
+                <Typography className="filterSectionTitle">Price Range</Typography>
+                <Slider
+                  value={price}
+                  onChange={priceHandler}
+                  valueLabelDisplay="auto"
+                  aria-labelledby="range-slider"
+                  min={0}
+                  max={25000}
+                  style={{ color: "#9333ea" }}
+                />
+                <div className="priceValuesDisplay">
+                  <span>Rs. {price[0].toLocaleString()}</span>
+                  <span>Rs. {price[1].toLocaleString()}</span>
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="filterSection">
+                <Typography className="filterSectionTitle">Categories</Typography>
+                <ul className="categoryBox">
+                  <li
+                    className={`category-link ${category === "" ? "activeCategory" : ""}`}
+                    onClick={() => setCategory("")}
+                  >
+                    All Categories
+                  </li>
+                  {categories.map((c) => (
+                    <li
+                      className={`category-link ${category === c ? "activeCategory" : ""}`}
+                      key={c}
+                      onClick={() => setCategory(c)}
+                    >
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Ratings Filter */}
+              <div className="filterSection">
+                <Typography className="filterSectionTitle">Customer Ratings</Typography>
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continuous-slider"
+                  valueLabelDisplay="auto"
+                  min={0}
+                  max={5}
+                  step={0.5}
+                  style={{ color: "#9333ea" }}
+                />
+                <div className="ratingFilterHint">
+                  {ratings > 0 ? `${ratings} Stars & Above` : "All Ratings"}
+                </div>
+              </div>
+            </aside>
+
+            {/* Main Products Grid Area */}
+            <main className="productsContentArea">
+              <div className="productsGrid">
+                {loading ? (
+                  Array.from({ length: 6 }).map((_, i) => (
+                    <ProductCardSkeleton key={`skeleton-${i}`} />
+                  ))
+                ) : products && products.length > 0 ? (
+                  products.map((product) => (
+                    <ProductCard key={product.id || product._id} product={product} />
+                  ))
+                ) : (
+                  <div className="noProductsFound">
+                    <p className="noProductsTitle">No Products Found</p>
+                    <p className="noProductsSub">
+                      Try adjusting your search criteria or price filters to discover more items.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {resultPerPage < count && (
+                <div className="paginationBox">
+                  <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultPerPage}
+                    totalItemsCount={productsCount}
+                    onChange={setCurrentPageNo}
+                    nextPageText="Next"
+                    prevPageText="Prev"
+                    firstPageText="1st"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                  />
+                </div>
+              )}
+            </main>
           </div>
-
-          <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-            />
-
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
-              <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
-                valueLabelDisplay="auto"
-                min={0}
-                max={5}
-              />
-            </fieldset>
-          </div>
-          {resultPerPage < count && (
-            <div className="paginationBox">
-              <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
-            </div>
-          )}
-        </Fragment>
-      )}
     </Fragment>
   );
 };

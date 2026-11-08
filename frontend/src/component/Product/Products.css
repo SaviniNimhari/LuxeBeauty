@@ -1,109 +1,288 @@
-.productsHeading {
-  margin: 2vmax auto;
-  width: 15vw;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
-  padding: 2vmax;
-  color: rgba(0, 0, 0, 0.678);
-  font: 500 1.5vmax "Roboto";
+/* ==========================================================
+   LuxeBeauty - Products Catalog Styles
+   ========================================================== */
+
+.productsHeaderBanner {
+  background: linear-gradient(135deg, #2e1065 0%, #4c1d95 60%, #701a75 100%);
+  color: #ffffff;
   text-align: center;
+  padding: 3.5rem 1.5rem 3rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 20px rgba(76, 29, 149, 0.15);
 }
 
-.products {
+.productsMainHeading {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 0%, #fbcfe8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.productsSubHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #e9d5ff;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Page Layout */
+.productsPageContainer {
   display: flex;
-  flex-wrap: wrap;
-  padding: 0 5vmax;
-  justify-content: center;
-  min-height: 30vh;
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+  gap: 2.5rem;
+  align-items: flex-start;
 }
 
+/* Sidebar Filters */
+.filterBox {
+  width: 280px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 90px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(233, 213, 255, 0.6);
+}
+
+.filterBoxHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3e8ff;
+  margin-bottom: 1.5rem;
+}
+
+.filterTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2e1065;
+  margin: 0;
+}
+
+.clearFiltersBtn {
+  background: none;
+  border: none;
+  color: #ec4899;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.clearFiltersBtn:hover {
+  background: #fdf2f8;
+  color: #be185d;
+}
+
+.filterSection {
+  margin-bottom: 1.75rem;
+}
+
+.filterSection:last-child {
+  margin-bottom: 0;
+}
+
+.filterSectionTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4c1d95;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem !important;
+}
+
+.priceValuesDisplay {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin-top: 4px;
+}
+
+.categoryBox {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.category-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: #4b5563;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.category-link:hover {
+  background: #f5f3ff;
+  color: #7c3aed;
+  transform: translateX(4px);
+}
+
+.category-link.activeCategory {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);
+}
+
+.ratingFilterHint {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Products Grid Area */
+.productsContentArea {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+/* Empty State */
+.noProductsFound {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px dashed #d8b4fe;
+  width: 100%;
+}
+
+.noProductsTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3b0764;
+  margin-bottom: 0.5rem;
+}
+
+.noProductsSub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Pagination */
 .paginationBox {
   display: flex;
   justify-content: center;
-  margin: 6vmax;
+  margin: 3.5rem 0 1rem;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   padding: 0;
+  list-style: none;
+  gap: 6px;
 }
 
 .page-item {
-  background-color: rgb(255, 255, 255);
-  list-style: none;
-  border: 1px solid rgba(0, 0, 0, 0.178);
-  padding: 1vmax 1.5vmax;
-  transition: all 0.3s;
+  background-color: #ffffff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+  transition: all 0.25s ease;
   cursor: pointer;
-}
-.page-item:first-child {
-  border-radius: 5px 0 0 5px;
+  overflow: hidden;
 }
 
-.page-item:last-child {
-  border-radius: 0 5px 5px 0;
-}
 .page-link {
+  display: block;
+  padding: 10px 16px;
   text-decoration: none;
-  font: 300 0.7vmax "Roboto";
-  color: rgb(80, 80, 80);
-  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4c1d95;
+  transition: all 0.25s ease;
 }
 
 .page-item:hover {
-  background-color: rgb(230, 230, 230);
+  background-color: #f5f3ff;
+  border-color: #c084fc;
 }
 
 .page-item:hover .page-link {
-  color: rgb(0, 0, 0);
+  color: #7c3aed;
 }
 
 .pageItemActive {
-  background-color: tomato;
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%) !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
 }
 
 .pageLinkActive {
-  color: white;
+  color: #ffffff !important;
 }
 
-.filterBox {
-  width: 10vmax;
-  position: absolute;
-  top: 10vmax;
-  left: 4vmax;
-}
+/* ==========================================================
+   Responsive
+   ========================================================== */
 
-.categoryBox {
-  padding: 0%;
-}
+@media screen and (max-width: 960px) {
+  .productsPageContainer {
+    flex-direction: column;
+    padding: 0 1.25rem;
+  }
 
-.category-link {
-  list-style: none;
-  color: rgba(0, 0, 0, 0.61);
-  font: 400 0.8vmax "Roboto";
-  margin: 0.4vmax;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-.category-link:hover {
-  color: tomato;
-}
+  .filterBox {
+    width: 100%;
+    position: static;
+    margin-bottom: 1.5rem;
+  }
 
-.filterBox > fieldset {
-  border: 1px solid rgba(0, 0, 0, 0.329);
+  .categoryBox {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .productsMainHeading {
+    font-size: 2rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .filterBox {
-    width: 20vmax;
-    position: static;
-    margin: auto;
+  .productsGrid {
+    grid-template-columns: 1fr;
   }
-
-  .page-link {
-    font: 300 1.7vmax "Roboto";
-  }
-  .category-link {
-    font: 400 1.8vmax "Roboto";
+  .productsHeaderBanner {
+    padding: 2.5rem 1rem;
   }
 }

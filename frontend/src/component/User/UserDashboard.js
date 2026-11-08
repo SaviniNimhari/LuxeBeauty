@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { myOrders, clearErrors } from "../../actions/orderAction";
+import { getWishlist } from "../../actions/wishlistAction";
 import { useAlert } from "react-alert";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -13,6 +14,7 @@ import LocalMallIcon from "@material-ui/icons/LocalMall";
 import LockIcon from "@material-ui/icons/Lock";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import StorefrontIcon from "@material-ui/icons/Storefront";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import LaunchIcon from "@material-ui/icons/Launch";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
@@ -22,6 +24,7 @@ const UserDashboard = ({ history }) => {
 
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const {
     loading: ordersLoading,
     error: ordersError,
@@ -39,6 +42,7 @@ const UserDashboard = ({ history }) => {
     }
 
     dispatch(myOrders());
+    dispatch(getWishlist());
   }, [dispatch, alert, ordersError, history, isAuthenticated]);
 
   if (loading || !user) {
@@ -156,6 +160,11 @@ const UserDashboard = ({ history }) => {
               <Link to="/cart" className="quickActionBtn">
                 <ShoppingCartIcon />
                 <span>Shopping Bag ({cartItems ? cartItems.length : 0})</span>
+                <ArrowForwardIcon className="arrowIcon" />
+              </Link>
+              <Link to="/wishlist" className="quickActionBtn">
+                <FavoriteIcon style={{ color: "#ec4899" }} />
+                <span>Saved Wishlist ({wishlist ? wishlist.length : 0})</span>
                 <ArrowForwardIcon className="arrowIcon" />
               </Link>
               <Link to="/products" className="quickActionBtn">

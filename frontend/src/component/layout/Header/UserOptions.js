@@ -6,6 +6,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import PersonIcon from "@material-ui/icons/Person";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -24,6 +25,7 @@ const UserOptions = ({ user }) => {
 
   const options = [
     { icon: <DashboardIcon />, name: "Customer Dashboard", func: userDashboard },
+    { icon: <FavoriteIcon style={{ color: "#ec4899" }} />, name: "Wishlist", func: wishlist },
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
     {
@@ -56,6 +58,10 @@ const UserOptions = ({ user }) => {
 
   function userDashboard() {
     history.push("/dashboard");
+  }
+
+  function wishlist() {
+    history.push("/wishlist");
   }
 
   function sellerDashboard() {

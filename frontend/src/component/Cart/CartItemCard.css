@@ -1,59 +1,117 @@
-.CartItemCard {
+/* ==========================================================
+   LuxeBeauty - Luxury Cart Item Card
+   ========================================================== */
+
+.luxuryCartItemCard {
   display: flex;
-  padding: 1vmax;
-  height: 8vmax;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-.CartItemCard > img {
-  width: 5vmax;
+  gap: 16px;
+  align-items: center;
 }
 
-.CartItemCard > div {
+.cartItemImageWrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fdf4ff;
+  flex-shrink: 0;
+  border: 1px solid rgba(233, 213, 255, 0.7);
+  display: block;
+}
+
+.cartItemThumb {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cartItemImageWrapper:hover .cartItemThumb {
+  transform: scale(1.08);
+}
+
+.cartItemDetails {
   display: flex;
-  margin: 0.3vmax 1vmax;
   flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
 }
 
-.CartItemCard > div > a {
-  font: 300 0.9vmax cursive;
-  color: rgba(24, 24, 24, 0.815);
+.cartItemTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2e1065;
   text-decoration: none;
+  line-height: 1.3;
+  transition: color 0.2s ease;
 }
 
-.CartItemCard > div > span {
-  font: 300 0.9vmax "Roboto";
-  color: rgba(24, 24, 24, 0.815);
+.cartItemTitle:hover {
+  color: #9333ea;
 }
 
-.CartItemCard > div > p {
-  color: tomato;
-  font: 100 0.8vmax "Roboto";
+.cartItemVariantBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #faf5ff;
+  border: 1px solid #f3e8ff;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #6b21a8;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.cartVariantDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cartItemMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.cartItemSku {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.cartItemUnitPrice {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.cartItemRemoveBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
   cursor: pointer;
+  padding: 4px 0;
+  width: fit-content;
+  transition: color 0.2s ease;
+  margin-top: 4px;
 }
 
-@media screen and (max-width: 600px) {
-  .CartItemCard {
-    padding: 3vmax;
-    height: 25vmax;
-  }
-  .CartItemCard > img {
-    width: 10vmax;
-  }
-
-  .CartItemCard > div {
-    margin: 1vmax 2vmax;
-  }
-
-  .CartItemCard > div > a {
-    font: 300 2vmax cursive;
-  }
-
-  .CartItemCard > div > span {
-    font: 300 1.9vmax "Roboto";
-  }
-
-  .CartItemCard > div > p {
-    font: 100 1.8vmax "Roboto";
-  }
+.cartItemRemoveBtn:hover {
+  color: #b91c1c;
+  text-decoration: underline;
 }

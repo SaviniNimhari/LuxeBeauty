@@ -1,178 +1,369 @@
-.emptyCart {
-  margin: auto;
-  text-align: center;
-  padding: 10vmax;
-  height: 50vh;
+/* ==========================================================
+   LuxeBeauty - Modern Shopping Bag (Cart) Styles
+   ========================================================== */
+
+.cartPageWrapper {
+  max-width: 1300px;
+  margin: 2.5rem auto 5rem;
+  padding: 0 1.5rem;
+}
+
+.cartHeaderSection {
+  margin-bottom: 1.5rem;
+}
+
+.cartPageTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #2e1065;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.cartPageTitle span {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #7c3aed;
+}
+
+/* Free Shipping Banner */
+.freeShippingBanner {
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border: 1px solid #f0abfc;
+  border-radius: 14px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.freeShippingText {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: #581c87;
+  margin: 0 0 8px 0;
+}
+
+.freeShippingProgressBar {
+  height: 8px;
+  background: #f3e8ff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.freeShippingProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ec4899 0%, #9333ea 100%);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* Main Layout */
+.cartMainLayout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.cartItemsColumn {
+  flex-grow: 1;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(233, 213, 255, 0.7);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.05);
+  overflow: hidden;
+}
+
+.cartItemsListHeader {
+  display: grid;
+  grid-template-columns: 3fr 1.5fr 1.2fr;
+  padding: 1rem 1.75rem;
+  background: #fdf4ff;
+  border-bottom: 1px solid #f3e8ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #4c1d95;
+}
+
+.cartItemsListHeader span:nth-child(2) {
+  text-align: center;
+}
+
+.cartItemsListHeader span:last-child {
+  text-align: right;
+}
+
+.cartItemRow {
+  display: grid;
+  grid-template-columns: 3fr 1.5fr 1.2fr;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid #f8fafc;
+  transition: background 0.2s ease;
+}
+
+.cartItemRow:last-child {
+  border-bottom: none;
+}
+
+.cartItemRow:hover {
+  background: #fdfcff;
+}
+
+.cartItemQuantityCol {
+  display: flex;
   justify-content: center;
+}
+
+.quantityStepper {
+  display: inline-flex;
   align-items: center;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 25px;
+  background: #ffffff;
+  overflow: hidden;
 }
-.emptyCart > svg {
-  font-size: 5vmax;
-  color: tomato;
-}
-.emptyCart > p {
-  font-size: 2vmax;
-}
-.emptyCart > a {
-  background-color: rgb(51, 51, 51);
-  color: white;
+
+.quantityStepper button {
+  width: 32px;
+  height: 32px;
   border: none;
-  padding: 1vmax 3vmax;
+  background: transparent;
+  color: #7c3aed;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  font: 400 1vmax "Roboto";
-  text-decoration: none;
-}
-
-.cartPage {
-  padding: 5vmax;
-}
-
-.cartHeader {
-  background-color: tomato;
-  width: 90%;
-  box-sizing: border-box;
-  margin: auto;
-  color: white;
-  display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-  font: 300 0.7vmax "Roboto";
-}
-.cartHeader > p {
-  margin: 10px;
-}
-.cartHeader > p:last-child {
-  text-align: end;
-}
-
-.cartContainer {
-  width: 90%;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-}
-
-.cartInput {
   display: flex;
   align-items: center;
-  height: 8vmax;
+  justify-content: center;
+  transition: background 0.2s ease;
 }
 
-.cartInput > button {
-  border: none;
-  background-color: rgba(0, 0, 0, 0.616);
-  padding: 0.5vmax;
-  cursor: pointer;
-  color: white;
-  transition: all 0.5s;
-}
-.cartInput > button:hover {
-  background-color: rgba(0, 0, 0, 0.767);
+.quantityStepper button:hover:not(:disabled) {
+  background: #f5f3ff;
+  color: #9333ea;
 }
 
-.cartInput > input {
-  border: none;
-  padding: 0.5vmax;
-  width: 1vmax;
+.quantityStepper button:disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.quantityStepper input {
+  width: 36px;
   text-align: center;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e1b4b;
   outline: none;
-  font: 400 0.8vmax "Roboto";
-  color: rgba(0, 0, 0, 0.74);
+  background: transparent;
 }
 
-.cartSubtotal {
-  display: flex;
-  padding: 0.5vmax;
-  height: 8vmax;
-  align-items: center;
-  box-sizing: border-box;
-  font: 300 1vmax cursive;
-  justify-content: flex-end;
-  color: rgba(0, 0, 0, 0.753);
+.cartItemTotalCol {
+  text-align: right;
 }
 
-.cartGrossProfit {
-  display: grid;
-  grid-template-columns: 2fr 1.2fr;
+.lineItemTotal {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #9333ea;
 }
 
-.cartGrossProfitBox {
-  border-top: 3px solid tomato;
-  margin: 1vmax 4vmax;
-  box-sizing: border-box;
-  padding: 2vmax 0;
-  font: 300 1vmax "Roboto";
+/* Order Summary */
+.cartSummaryColumn {
+  width: 380px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 90px;
+}
+
+.orderSummaryCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(233, 213, 255, 0.8);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.08);
+  padding: 1.75rem 1.5rem;
+}
+
+.summaryTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2e1065;
+  margin: 0 0 1.2rem 0;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #f3e8ff;
+}
+
+.summaryRow {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 0.9rem;
 }
 
-.checkOutBtn {
-  display: flex;
-  justify-content: flex-end;
+.summaryDivider {
+  height: 1px;
+  background: #f3e8ff;
+  margin: 1.2rem 0;
 }
-.checkOutBtn > button {
-  background-color: tomato;
-  color: white;
+
+.totalRow {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2e1065;
+  margin-bottom: 0.6rem;
+}
+
+.summaryTotalAmount {
+  color: #9333ea;
+  font-size: 1.35rem;
+}
+
+.summaryTaxNote {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #9ca3af;
+  line-height: 1.4;
+  margin: 0 0 1.5rem 0;
+}
+
+.checkoutProceedBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  color: #ffffff;
   border: none;
-  padding: 0.8vmax 4vmax;
-  width: 50%;
-  font: 300 0.8vmax "Roboto";
-  margin: 1vmax 4vmax;
-  cursor: pointer;
   border-radius: 30px;
+  padding: 14px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.3);
+  transition: all 0.25s ease;
 }
 
-@media screen and (max-width: 600px) {
-  .cartPage {
-    padding: 0;
-    min-height: 60vh;
-  }
+.checkoutProceedBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+}
 
-  .cartHeader {
+.cartGuarantees {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f8fafc;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #7c3aed;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Empty Cart State */
+.emptyCartContainer {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.emptyCartCard {
+  max-width: 480px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 3.5rem 2.5rem;
+  border: 1px solid rgba(233, 213, 255, 0.8);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.08);
+}
+
+.emptyCartIconCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #fdf4ff;
+  border: 2px dashed #d8b4fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.emptyCartTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2e1065;
+  margin: 0 0 0.8rem 0;
+}
+
+.emptyCartSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0 0 2rem 0;
+}
+
+.emptyCartExploreBtn {
+  display: inline-block;
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  transition: all 0.25s ease;
+}
+
+.emptyCartExploreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.4);
+}
+
+/* Responsive */
+@media screen and (max-width: 960px) {
+  .cartMainLayout {
+    flex-direction: column;
+  }
+  .cartSummaryColumn {
     width: 100%;
-    font: 300 1.7vmax "Roboto";
-    grid-template-columns: 3fr 1fr 1fr;
+    position: static;
   }
-
-  .cartContainer {
-    width: 100%;
-    grid-template-columns: 3fr 1fr 1fr;
+  .cartItemsListHeader {
+    display: none;
   }
-
-  .cartInput {
-    height: 20vmax;
+  .cartItemRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 1.25rem;
   }
-
-  .cartInput > button {
-    padding: 1.5vmax;
+  .cartItemQuantityCol {
+    justify-content: flex-start;
   }
-
-  .cartInput > input {
-    width: 2vmax;
-    padding: 1.5vmax;
-    font: 400 1.8vmax "Roboto";
-  }
-
-  .cartSubtotal {
-    padding: 1.5vmax;
-    height: 20vmax;
-    font: 300 2vmax "Roboto";
-  }
-
-  .cartGrossProfit {
-    display: grid;
-    grid-template-columns: 0fr 2fr;
-  }
-
-  .cartGrossProfitBox {
-    padding: 2vmax;
-    font: 300 2vmax "Roboto";
-  }
-
-  .checkOutBtn > button {
-    padding: 2vmax 4vmax;
-    width: 100%;
-    font: 300 2vmax "Roboto";
+  .cartItemTotalCol {
+    text-align: left;
   }
 }
